@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:life_line/screens/screens.dart';
-import 'package:life_line/widget/widget.dart';
-
+import 'package:cookin/widget/widget.dart';
 class Button extends StatelessWidget {
   const Button({
     super.key,
@@ -26,10 +24,10 @@ class Button extends StatelessWidget {
     return Button(
       text: "Sign Up",
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const CreateAccountPage()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => ),
+        // );
       },
     );
   }
@@ -40,10 +38,10 @@ class Button extends StatelessWidget {
       textColor: const Color(0xFF000000),
       borderWidth: 1,
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const LoginPage()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => \),
+        // );
       },
     );
   }
