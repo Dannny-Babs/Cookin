@@ -38,7 +38,7 @@ class _InputBoxState extends State<InputBox> {
                 ? IconButton(
                     icon: Icon(passwordVisibility
                         ? SolarIconsOutline.eye.
-                        : SolarIconsOutline.eye),
+                        : SolarIconsOutline.eyeClosed),
                     onPressed: () {
                       setState(() {
                         passwordVisibility = !passwordVisibility;
