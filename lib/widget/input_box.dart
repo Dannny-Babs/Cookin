@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_line/utils/utils.dart';
+import 'package:solar_icons/solar_icons.dart';
 class InputBox extends StatefulWidget {
   const InputBox({
     super.key,
@@ -22,7 +23,7 @@ class InputBox extends StatefulWidget {
 }
 
 class _InputBoxState extends State<InputBox> {
-  var passwordVisibility = true;
+  bool passwordVisibility = true;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,8 +37,8 @@ class _InputBoxState extends State<InputBox> {
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(passwordVisibility
-                        ? Icons.visibility
-                        : Icons.visibility_off),
+                        ? SolarIconsOutline.eye.
+                        : SolarIconsOutline.eye),
                     onPressed: () {
                       setState(() {
                         passwordVisibility = !passwordVisibility;
