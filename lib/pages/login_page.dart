@@ -1,4 +1,9 @@
+import 'package:cookin/utils/colors.dart';
+import 'package:cookin/widget/button.dart';
+import 'package:cookin/widget/divider.dart';
 import 'package:cookin/widget/input_box.dart';
+import 'package:cookin/widget/text.dart';
+import 'package:dev_icons/dev_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -29,20 +34,17 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment:
                           CrossAxisAlignment.start, // Align text to the left
                       children: [
-                        Text(
+                        MyText(
                           'Hello,',
-                          style: TextStyle(
-                              fontSize: 35,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
+                          color: Colors.black,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w600,
                         ),
-                        Text(
+                        MyText(
                           'Welcome Back!',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          color: Colors.black54,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
                         ),
                       ],
                     ),
@@ -54,11 +56,9 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment:
                         CrossAxisAlignment.start, // Align contents to the left
                     children: [
-                      Text(
+                      MyText(
                         'Email',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
+                        fontSize: 18,
                       ),
                       InputBox(
                         height: 50,
@@ -73,14 +73,11 @@ class _LoginPageState extends State<LoginPage> {
                     height: 15,
                   ),
                   const Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start, // Align contents to the left
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      MyText(
                         'Password',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
+                        fontSize: 18,
                       ),
                       InputBoxPassword(
                         height: 50,
@@ -106,13 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 15,
                   ),
                   FilledButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return SignUpPage();
-                        },
-                      ));
-                    },
+                    onPressed: () {},
                     style: FilledButton.styleFrom(
                       backgroundColor:
                           const Color(0xFF129575), // Background color
@@ -140,8 +131,33 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-                  Row(
-                    
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const myDivider(
+                      text: 'Or Sign in with',
+                      flex: 2,
+                      fontsize: 16,
+                      fontweight: FontWeight.w400,
+                      height: 0.8),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyIconButton(
+                        icon: DevIcons.googlePlain,
+                        text: 'Google',
+                        color: AppColors.primaryColor,
+                      ),
+                      SizedBox(width: 10), // Add spacing between buttons
+                      MyIconButton(
+                        icon: DevIcons.facebookPlain,
+                        text: 'Facebook',
+                        color: AppColors.blue,
+                      ),
+                    ],
                   )
                 ],
               ),

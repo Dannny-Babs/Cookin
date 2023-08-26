@@ -1,3 +1,4 @@
+import 'package:dev_icons/dev_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:cookin/widget/widget.dart';
 
@@ -116,6 +117,46 @@ class ButtonWithIcon extends StatelessWidget {
         color: textColor,
         fontSize: 18,
         fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+}
+
+class MyIconButton extends StatefulWidget {
+  const MyIconButton({
+    super.key,
+    this.color,
+    required this.icon,
+    required this.text,
+  });
+  final color;
+  final String text;
+  final icon;
+
+  @override
+  State<MyIconButton> createState() => _MyIconButtonState();
+}
+
+class _MyIconButtonState extends State<MyIconButton> {
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton.icon(
+      onPressed: () {},
+      icon: Icon(
+        widget.icon,
+        color: widget.color,
+      ),
+      label: Text(
+        widget.text,
+        style: TextStyle(
+          color: widget.color,
+        ),
+      ),
+      style: OutlinedButton.styleFrom(
+        
+        side: BorderSide(
+          color: widget.color,
+        ), // Border color
       ),
     );
   }
