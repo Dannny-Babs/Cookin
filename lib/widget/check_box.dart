@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:life_line/widget/widget.dart';
-import 'package:life_line/utils/utils.dart';
+import 'package:cookin/widget/widget.dart';
+import 'package:cookin/utils/utils.dart';
 
 class CheckBox extends StatefulWidget {
   const CheckBox(

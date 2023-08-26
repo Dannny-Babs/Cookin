@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_line/utils/utils.dart';
 import 'package:solar_icons/solar_icons.dart';
+import 'package:cookin/utils/utils.dart';
 class InputBox extends StatefulWidget {
   const InputBox({
     super.key,
@@ -37,7 +38,7 @@ class _InputBoxState extends State<InputBox> {
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(passwordVisibility
-                        ? SolarIconsOutline.eye.
+                        ? SolarIconsOutline.eye
                         : SolarIconsOutline.eyeClosed),
                     onPressed: () {
                       setState(() {

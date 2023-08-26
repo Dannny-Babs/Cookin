@@ -1,1 +1,1 @@
-export 'package:life_line/utils/colors.dart';
+export 'package:cookin/utils/colors.dart';
