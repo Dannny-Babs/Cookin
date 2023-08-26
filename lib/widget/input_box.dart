@@ -1,10 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
+// ignore: unused_import
 import 'package:cookin/utils/utils.dart';
 
 class InputBox extends StatefulWidget {
   const InputBox({
     super.key,
-    this.height = 47,
+    this.height = 50,
+    this.width = 330,
+    this.placeHolder = 'Email',
+    this.borderRadius = 12,
+    this.marginVertical = 6,
+  });
+  final double height;
+  final double width;
+  final String placeHolder;
+  final double borderRadius;
+  final double marginVertical;
+
+  @override
+  State<InputBox> createState() => _InputBoxState();
+}
+
+class _InputBoxState extends State<InputBox> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: widget.marginVertical),
+      child: SizedBox(
+        height: widget.height,
+        width: widget.width,
+        child: TextField(
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            hintStyle: const TextStyle(fontSize: 14),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                width: 1.2,
+                color: Color.fromARGB(255, 200, 208, 210),
+              ),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                width: 1.2,
+                color: Color.fromRGBO(188, 202, 206, 1),
+              ),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+            ),
+            hintText: widget.placeHolder,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class InputBoxPassword extends StatefulWidget {
+  const InputBoxPassword({
+    super.key,
+    this.height = 50,
     this.width = 330,
     this.placeHolder = 'Email',
     this.borderRadius = 12,
@@ -19,11 +74,11 @@ class InputBox extends StatefulWidget {
   final bool isPassword;
 
   @override
-  State<InputBox> createState() => _InputBoxState();
+  _InputBoxPasswordState createState() => _InputBoxPasswordState();
 }
 
-class _InputBoxState extends State<InputBox> {
-  var passwordVisibility = true;
+class _InputBoxPasswordState extends State<InputBoxPassword> {
+  bool passwordVisibility = true;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,13 +87,14 @@ class _InputBoxState extends State<InputBox> {
         height: widget.height,
         width: widget.width,
         child: TextField(
+          textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
-            hintStyle: const TextStyle(fontSize: 16),
+            hintStyle: const TextStyle(fontSize: 14),
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(passwordVisibility
-                        ? Icons.visibility
-                        : Icons.visibility_off),
+                        ? SolarIconsOutline.eye
+                        : SolarIconsOutline.eyeClosed),
                     onPressed: () {
                       setState(() {
                         passwordVisibility = !passwordVisibility;
@@ -48,15 +104,15 @@ class _InputBoxState extends State<InputBox> {
                 : null,
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                width: 1,
-                color: AppColors.offWhite,
+                width: 1.2,
+                color: Color.fromARGB(255, 200, 208, 210),
               ),
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                width: 1,
-                color: AppColors.textColor,
+                width: 1.2,
+                color: Color.fromRGBO(188, 202, 206, 1),
               ),
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
