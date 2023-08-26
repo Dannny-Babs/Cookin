@@ -1,6 +1,7 @@
 import 'package:cookin/widget/input_box.dart';
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
+import 'start_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -107,11 +108,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   FilledButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return SignUpPage();
-                        },
-                      ));
+                      // Navigator.push(context, MaterialPageRoute(
+                      //   builder: (context) {
+                      //     return SignUpPage();
+                      //   },
+                      // ));
                     },
                     style: FilledButton.styleFrom(
                       backgroundColor:

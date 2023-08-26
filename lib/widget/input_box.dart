@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
-// ignore: unused_import
-import 'package:cookin/utils/utils.dart';
+import 'text.dart';
 
 class InputBox extends StatefulWidget {
   const InputBox({
@@ -121,6 +120,53 @@ class _InputBoxPasswordState extends State<InputBoxPassword> {
           obscureText: passwordVisibility,
         ),
       ),
+    );
+  }
+}
+
+class InputWithLabel extends StatelessWidget {
+  const InputWithLabel({
+    super.key,
+    this.height = 50,
+    this.width = 330,
+    this.placeHolder = 'Email',
+    this.borderRadius = 12,
+    this.marginVertical = 6,
+    this.label = 'Email',
+    this.isPassword = false,
+  });
+  final double height;
+  final double width;
+  final String placeHolder;
+  final double borderRadius;
+  final double marginVertical;
+  final bool isPassword;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        MyText(
+          label,
+          fontSize: 18,
+        ),
+        isPassword
+            ? InputBoxPassword(
+                height: height,
+                width: width,
+                placeHolder: placeHolder,
+                borderRadius: borderRadius,
+                marginVertical: marginVertical,
+              )
+            : InputBox(
+                height: height,
+                width: width,
+                placeHolder: placeHolder,
+                borderRadius: borderRadius,
+                marginVertical: marginVertical,
+              ),
+      ],
     );
   }
 }
