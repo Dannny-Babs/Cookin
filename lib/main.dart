@@ -1,4 +1,4 @@
-import 'package:cookin/pages/start_screen.dart';
+import 'package:cookin/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,        
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),
-      home: const startScreen(),
+      home: const CreateAccountPage(),
     );
   }
 }

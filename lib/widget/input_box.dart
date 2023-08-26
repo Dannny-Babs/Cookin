@@ -145,28 +145,32 @@ class InputWithLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        MyText(
-          label,
-          fontSize: 18,
-        ),
-        isPassword
-            ? InputBoxPassword(
-                height: height,
-                width: width,
-                placeHolder: placeHolder,
-                borderRadius: borderRadius,
-                marginVertical: marginVertical,
-              )
-            : InputBox(
-                height: height,
-                width: width,
-                placeHolder: placeHolder,
-                borderRadius: borderRadius,
-                marginVertical: marginVertical,
-              ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical:8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MyText(
+            label,
+            fontSize: 18,
+          ),
+          isPassword
+              ? InputBoxPassword(
+                  height: height,
+                  width: width,
+                  placeHolder: placeHolder,
+                  borderRadius: borderRadius,
+                  marginVertical: marginVertical,
+                )
+              : InputBox(
+                  height: height,
+                  width: width,
+                  placeHolder: placeHolder,
+                  borderRadius: borderRadius,
+                  marginVertical: marginVertical,
+                ),
+        ],
+      ),
     );
   }
 }

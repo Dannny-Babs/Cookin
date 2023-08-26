@@ -28,12 +28,12 @@ class _CheckBoxState extends State<CheckBox> {
             });
           },
           child: Container(
-            width: 15,
-            height: 15,
+            width: 20,
+            height: 20,
             decoration: BoxDecoration(
-              color: isChecked ? AppColors.red : AppColors.white,
-              border: Border.all(color: AppColors.textColor), // Optional border
-              borderRadius: BorderRadius.circular(0),
+              color: isChecked ? AppColors.secondaryColor : AppColors.white,
+              border: Border.all(color: AppColors.secondaryColor), // Optional border
+              borderRadius: BorderRadius.circular(6),
             ),
             child: isChecked
                 ? const Icon(
@@ -48,6 +48,7 @@ class _CheckBoxState extends State<CheckBox> {
         MyText(
           widget.text,
           fontSize: 16,
+          color: AppColors.secondaryColor,
         ),
       ],
     );
