@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Cookin',
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.green,        
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),
       home: const startScreen(),

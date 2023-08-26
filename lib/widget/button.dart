@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cookin/widget/widget.dart';
+
 class Button extends StatelessWidget {
   const Button({
     super.key,
@@ -113,7 +114,8 @@ class ButtonWithIcon extends StatelessWidget {
       label: MyText(
         text,
         color: textColor,
-        fontSize: 13,
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
       ),
     );
   }
