@@ -102,7 +102,16 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  
+                  const MyFilledButton(
+                    color: Colors.white,
+                    bgcolor: AppColors.primaryColor,
+                    text: 'Sign In',
+                    horizontalpadding: 120,
+                    verticalpadding: 15,
+                    fontsize: 25,
+                    fontweight: FontWeight.w500,
+                    Borderradius: 12,
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -127,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                       MyIconButton(
                         icon: DevIcons.facebookPlain,
                         text: 'Facebook',
-                        color: AppColors.blue,
+                        color: Colors.blue,
                       ),
                     ],
                   )
