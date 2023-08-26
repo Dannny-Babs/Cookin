@@ -126,11 +126,11 @@ class ButtonWithIcon extends StatelessWidget {
 class MyIconButton extends StatefulWidget {
   const MyIconButton({
     super.key,
-    this.color,
+    required this.color,
     required this.icon,
     required this.text,
   });
-  final color;
+  final Color color;
   final String text;
   final icon;
 
@@ -163,7 +163,27 @@ class _MyIconButtonState extends State<MyIconButton> {
 }
 
 class MyFilledButton extends StatefulWidget {
-  const MyFilledButton({super.key});
+  const MyFilledButton({
+    super.key,
+    required this.color,
+    required this.bgcolor,
+    this.icon,
+    required this.text,
+    required this.horizontalpadding,
+    required this.verticalpadding,
+    required this.fontsize,
+    required this.fontweight,
+    required this.Borderradius,
+  });
+  final Color color;
+  final Color bgcolor;
+  final String text;
+  final double horizontalpadding;
+  final double verticalpadding;
+  final Borderradius;
+  final fontweight;
+  final double fontsize;
+  final icon;
 
   @override
   State<MyFilledButton> createState() => _MyFilledButtonState();
@@ -175,25 +195,29 @@ class _MyFilledButtonState extends State<MyFilledButton> {
     return FilledButton(
       onPressed: () {},
       style: FilledButton.styleFrom(
-        backgroundColor: const Color(0xFF129575), // Background color
+        backgroundColor: widget.bgcolor, // Background color
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(widget.Borderradius),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 15,), // Padding
+        padding: EdgeInsets.symmetric(
+          horizontal: widget.horizontalpadding,
+          vertical: widget.verticalpadding,
+        ), // Padding
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Sign In',
+            widget.text,
             style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                color: widget.color,
+                fontSize: widget.fontsize,
+                fontWeight: widget.fontweight),
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
-          Icon(SolarIconsOutline.arrowRight,
-              color: Colors.white), // Icon with default styling
+          Icon(widget.icon, color: widget.color), // Icon with default styling
         ],
       ),
     );

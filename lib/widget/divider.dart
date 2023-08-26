@@ -15,6 +15,7 @@ class myDivider extends StatefulWidget {
   final  fontweight;
   final double fontsize;
   final String text;
+  
 
   @override
   State<myDivider> createState() => _myDividerState();
