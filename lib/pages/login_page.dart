@@ -102,35 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  FilledButton(
-                    onPressed: () {},
-                    style: FilledButton.styleFrom(
-                      backgroundColor:
-                          const Color(0xFF129575), // Background color
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: const EdgeInsets.fromLTRB(
-                          120, 15, 120, 15), // Padding
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Sign In',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Icon(SolarIconsOutline.arrowRight,
-                            color: Colors.white), // Icon with default styling
-                      ],
-                    ),
-                  ),
+                  
                   const SizedBox(
                     height: 20,
                   ),
