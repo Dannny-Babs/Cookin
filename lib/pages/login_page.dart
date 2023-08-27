@@ -1,3 +1,4 @@
+import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/colors.dart';
 import 'package:cookin/widget/button.dart';
 import 'package:cookin/widget/divider.dart';
@@ -100,20 +101,17 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 35,
                   ),
                   const MyFilledButton(
                     color: Colors.white,
                     bgcolor: AppColors.primaryColor,
                     text: 'Sign In',
-                    horizontalpadding: 120,
-                    verticalpadding: 15,
-                    fontsize: 25,
-                    fontweight: FontWeight.w500,
-                    Borderradius: 12,
+                    fontsize: 20,
+                    icon: SolarIconsOutline.arrowRight,
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   const myDivider(
                       text: 'Or Sign in with',
@@ -139,7 +137,15 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.blue,
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  const AnchorTextButton(
+                    text1: "Don't have an account?",
+                    text2: 'Sign Up',
+                    page: CreateAccountPage(),
+                  ),
                 ],
               ),
             ),

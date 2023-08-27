@@ -1,7 +1,7 @@
-import 'package:dev_icons/dev_icons.dart';
+import 'package:cookin/pages/create_account.dart';
+import 'package:cookin/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cookin/widget/widget.dart';
-import 'package:solar_icons/solar_icons.dart';
 
 class Button extends StatelessWidget {
   const Button({
@@ -166,21 +166,25 @@ class MyFilledButton extends StatefulWidget {
   const MyFilledButton({
     super.key,
     required this.color,
+    this.page = const LoginPage(),
     required this.bgcolor,
     this.icon,
+    this.sizebox = 10,
     required this.text,
-    required this.horizontalpadding,
-    required this.verticalpadding,
-    required this.fontsize,
-    required this.fontweight,
-    required this.Borderradius,
+    this.horizontalpadding = 120,
+    this.verticalpadding = 12,
+    this.fontsize = 24,
+    this.fontweight = FontWeight.w500,
+    this.Borderradius = 12,
   });
+  final double sizebox;
+  final page;
   final Color color;
   final Color bgcolor;
   final String text;
   final double horizontalpadding;
   final double verticalpadding;
-  final Borderradius;
+  final double Borderradius;
   final fontweight;
   final double fontsize;
   final icon;
@@ -193,7 +197,13 @@ class _MyFilledButtonState extends State<MyFilledButton> {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return widget.page;
+          },
+        ));
+      },
       style: FilledButton.styleFrom(
         backgroundColor: widget.bgcolor, // Background color
         shape: RoundedRectangleBorder(
@@ -214,11 +224,120 @@ class _MyFilledButtonState extends State<MyFilledButton> {
                 fontSize: widget.fontsize,
                 fontWeight: widget.fontweight),
           ),
-          const SizedBox(
-            width: 15,
+           SizedBox(
+            width: widget.sizebox,
           ),
           Icon(widget.icon, color: widget.color), // Icon with default styling
         ],
+      ),
+    );
+  }
+}
+
+class IconButtonSolo extends StatefulWidget {
+  const IconButtonSolo({
+    super.key,
+    required this.color,
+    this.radius = 10,
+    required this.icon,
+    this.iconsize = 24,
+    this.padding = 10,
+  });
+
+  final Color color;
+  final double radius;
+  final icon;
+  final double iconsize;
+  final double padding;
+
+  @override
+  State<IconButtonSolo> createState() => _IconButtonSoloState();
+}
+
+class _IconButtonSoloState extends State<IconButtonSolo> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius:
+            BorderRadius.circular(widget.radius), // Border radius of 5
+        border: Border.all(color: Colors.grey, width: 1.3),
+        // Grey color
+      ),
+      child: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        padding: EdgeInsets.all(widget.padding), // Padding of 10 for all sides
+        iconSize: widget.iconsize, // Size of the icon
+        icon: Icon(
+          widget.icon, // Icon is arrow_ios_rounded
+          color: widget.color, // White color for the icon
+        ),
+      ),
+    );
+  }
+}
+
+class AnchorTextButton extends StatefulWidget {
+  const AnchorTextButton({
+    super.key,
+    this.fontsize = 14,
+    this.color1 = Colors.black87,
+    this.color2 = Colors.amber,
+    required this.text1,
+    required this.text2,
+    this.page = const CreateAccountPage(),
+  });
+  final double fontsize;
+  final String text1;
+  final String text2;
+  final page;
+  final Color color1;
+  final Color color2;
+
+  @override
+  State<AnchorTextButton> createState() => _AnchorTextButtonState();
+}
+
+class _AnchorTextButtonState extends State<AnchorTextButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return widget.page;
+          },
+        ));
+      },
+      child: RichText(
+        text: TextSpan(
+          style: DefaultTextStyle.of(context)
+              .style
+              .copyWith(fontSize: widget.fontsize),
+          children: [
+            TextSpan(
+                text: widget.text1,
+                style: TextStyle(
+                  color: widget.color1,
+                  fontSize: widget.fontsize, // Amber color
+                  decoration: TextDecoration.none,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                )),
+            TextSpan(
+              text: widget.text2,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: widget.color2, // Amber color
+                decoration: TextDecoration.none,
+                fontFamily: 'Poppins', // No underline
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

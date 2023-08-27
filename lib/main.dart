@@ -9,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
- 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,10 +16,10 @@ class MyApp extends StatelessWidget {
       title: 'Cookin',
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.green,        
+        primarySwatch: Colors.green,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),
-      home: const CreateAccountPage(),
+      home: const startScreen(),
     );
   }
 }

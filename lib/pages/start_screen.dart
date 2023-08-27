@@ -89,42 +89,18 @@ class startScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 60,
+                    height: 45,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return LoginPage();
-                        },
-                      ));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color(0xFF129575), // Background color
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ), // Rounded corners
-                      padding:
-                          const EdgeInsets.fromLTRB(50, 15, 50, 15), // Padding
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Start Cooking',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Icon(SolarIconsOutline.arrowRight,
-                            color: Colors.white), // Icon with default styling
-                      ],
-                    ),
+                  const MyFilledButton(
+                    bgcolor: AppColors.primaryColor,
+                    icon: SolarIconsOutline.arrowRight,
+                    text: 'Start Cooking',
+                    color: AppColors.white,
+                    Borderradius: 15,
+                    horizontalpadding: 75,
                   ),
                   const SizedBox(
-                    height: 60,
+                    height: 80,
                   ),
                 ],
               ),

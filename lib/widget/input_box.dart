@@ -5,7 +5,7 @@ import 'text.dart';
 class InputBox extends StatefulWidget {
   const InputBox({
     super.key,
-    this.height = 50,
+    this.height = 60,
     this.width = 330,
     this.placeHolder = 'Email',
     this.borderRadius = 12,
@@ -146,7 +146,7 @@ class InputWithLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical:8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
