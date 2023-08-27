@@ -156,7 +156,7 @@ class InputWithLabel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyText(
-            label,
+            text: label,
             fontSize: 16,
           ),
           isPassword

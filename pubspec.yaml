@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  carousel_slider: ^4.0.0
   solar_icons:
   dev_icons: ^1.0.0
   # The following adds the Cupertino Icons font to your application.

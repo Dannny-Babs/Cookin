@@ -27,13 +27,13 @@ class CreateAccountPage extends StatelessWidget {
                   //   ),
                   SizedBox(height: 20),
                   MyText(
-                    "Create an account",
+                  text:  "Create an account",
                     fontSize: 35,
                     fontWeight: FontWeight.w900,
                   ),
                   SizedBox(height: 5),
                   MyText(
-                    "Let’s help you set up your account,\nit won’t take long.",
+                  text:  "Let’s help you set up your account,\nit won’t take long.",
                     fontSize: 16,
                   ),
                   SizedBox(height: 60),

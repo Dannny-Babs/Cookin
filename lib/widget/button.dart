@@ -68,7 +68,7 @@ class Button extends StatelessWidget {
       style: getButtonStyle(),
       onPressed: onPressed,
       child: MyText(
-        text,
+        text: text,
         color: textColor,
         fontSize: 19,
       ),
@@ -115,7 +115,7 @@ class ButtonWithIcon extends StatelessWidget {
       onPressed: () {},
       icon: icon,
       label: MyText(
-        text,
+        text: text,
         color: textColor,
         fontSize: 18,
         fontWeight: FontWeight.w600,
@@ -190,6 +190,61 @@ class MyFilledButton extends StatefulWidget {
 
   @override
   State<MyFilledButton> createState() => _MyFilledButtonState();
+}
+
+class MyFilledButtonSolo extends StatelessWidget {
+  const MyFilledButtonSolo({
+    super.key,
+    required this.color,
+    this.bgcolor = const Color(0xFFF5F5F5),
+    this.resppadding = 0.06,
+    this.sizebox = 10,
+    required this.text,
+    this.fontsize = 18,
+    this.fontweight = FontWeight.normal,
+    this.Borderradius = 12,
+  });
+  final double sizebox;
+
+  final Color color;
+  final Color bgcolor;
+  final String text;
+  final double resppadding;
+  final double Borderradius;
+  final fontweight;
+  final double fontsize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: FilledButton(
+        onPressed: () {},
+        style: FilledButton.styleFrom(
+          backgroundColor: bgcolor,
+          surfaceTintColor: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Borderradius),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * resppadding,
+            vertical: MediaQuery.of(context).size.height *
+                0.008, // Adjust the percentage as needed
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                  color: color, fontSize: fontsize, fontWeight: fontweight),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _MyFilledButtonState extends State<MyFilledButton> {
