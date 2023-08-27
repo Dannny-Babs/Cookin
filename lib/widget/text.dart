@@ -8,13 +8,12 @@ class MyText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.fontSize = 18,
     this.color = AppColors.textColor,
-    this.fontFamily = "Satoshi",
-  });
+      });
   final String text;
   final FontWeight fontWeight;
   final double fontSize;
   final Color color;
-  final String fontFamily;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class MyText extends StatelessWidget {
         fontWeight: fontWeight,
         fontSize: fontSize,
         color: color,
-        fontFamily: fontFamily,
+       
       ),
     );
   }

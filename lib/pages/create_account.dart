@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/colors.dart';
 import 'package:cookin/widget/button.dart';
@@ -79,6 +80,7 @@ class CreateAccountPage extends StatelessWidget {
                       bgcolor: AppColors.primaryColor,
                       text: 'Sign Up',
                       fontsize: 22,
+                      page: HomePage(),
                       sizebox: 5,
                       horizontalpadding: 125,
                       icon: SolarIconsOutline.arrowRight,

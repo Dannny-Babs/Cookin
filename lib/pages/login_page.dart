@@ -1,3 +1,4 @@
+import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/colors.dart';
 import 'package:cookin/widget/button.dart';
@@ -108,6 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     bgcolor: AppColors.primaryColor,
                     text: 'Sign In',
                     fontsize: 20,
+                    page: HomePage(),
                     icon: SolarIconsOutline.arrowRight,
                   ),
                   const SizedBox(
