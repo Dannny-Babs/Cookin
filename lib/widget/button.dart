@@ -1,5 +1,6 @@
 import 'package:cookin/pages/create_account.dart';
 import 'package:cookin/pages/login_page.dart';
+import 'package:cookin/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:cookin/widget/widget.dart';
 
@@ -224,7 +225,7 @@ class _MyFilledButtonState extends State<MyFilledButton> {
                 fontSize: widget.fontsize,
                 fontWeight: widget.fontweight),
           ),
-           SizedBox(
+          SizedBox(
             width: widget.sizebox,
           ),
           Icon(widget.icon, color: widget.color), // Icon with default styling
@@ -337,6 +338,52 @@ class _AnchorTextButtonState extends State<AnchorTextButton> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class IconButtonNav extends StatefulWidget {
+  const IconButtonNav({
+    super.key,
+    required this.color,
+    this.radius = 10,
+    required this.icon,
+    this.iconsize = 24,
+    this.flex = 1,
+    this.padding = 10,
+  });
+
+  final Color color;
+  final double radius;
+  final int flex;
+  final icon;
+  final double iconsize;
+  final double padding;
+
+  @override
+  State<IconButtonNav> createState() => _IconButtonNavState();
+}
+
+class _IconButtonNavState extends State<IconButtonNav> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius:
+            BorderRadius.circular(widget.radius), // Border radius of 5
+        color: AppColors.primaryColor,
+
+        // Grey color
+      ),
+      child: IconButton(
+        onPressed: () {},
+        padding: EdgeInsets.all(widget.padding), // Padding of 10 for all sides
+        iconSize: widget.iconsize, // Size of the icon
+        icon: Icon(
+          widget.icon, // Icon is arrow_ios_rounded
+          color: widget.color, // White color for the icon
         ),
       ),
     );
