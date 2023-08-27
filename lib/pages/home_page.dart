@@ -54,9 +54,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 const SizedBox(height: 20),
-                const Row(
+                Row(
                   children: [
-                    Flexible(
+                    const Flexible(
                       flex: 5,
                       child: MyInput_Box(
                         placeHolder: 'Search Recipe',
@@ -64,9 +64,9 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      width: MediaQuery.of(context).size.width * 0.02,
                     ),
-                    Flexible(
+                    const Flexible(
                         flex: 1,
                         child: IconButtonNav(
                             color: Colors.white,

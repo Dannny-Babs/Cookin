@@ -170,10 +170,9 @@ class MyFilledButton extends StatefulWidget {
     this.page = const LoginPage(),
     required this.bgcolor,
     this.icon,
+    this.resppadding = 0.3,
     this.sizebox = 10,
     required this.text,
-    this.horizontalpadding = 120,
-    this.verticalpadding = 12,
     this.fontsize = 24,
     this.fontweight = FontWeight.w500,
     this.Borderradius = 12,
@@ -183,8 +182,7 @@ class MyFilledButton extends StatefulWidget {
   final Color color;
   final Color bgcolor;
   final String text;
-  final double horizontalpadding;
-  final double verticalpadding;
+  final double resppadding;
   final double Borderradius;
   final fontweight;
   final double fontsize;
@@ -206,14 +204,15 @@ class _MyFilledButtonState extends State<MyFilledButton> {
         ));
       },
       style: FilledButton.styleFrom(
-        backgroundColor: widget.bgcolor, // Background color
+        backgroundColor: widget.bgcolor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(widget.Borderradius),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: widget.horizontalpadding,
-          vertical: widget.verticalpadding,
-        ), // Padding
+          horizontal: MediaQuery.of(context).size.width * widget.resppadding,
+          vertical: MediaQuery.of(context).size.height *
+              0.02, // Adjust the percentage as needed
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -228,7 +227,7 @@ class _MyFilledButtonState extends State<MyFilledButton> {
           SizedBox(
             width: widget.sizebox,
           ),
-          Icon(widget.icon, color: widget.color), // Icon with default styling
+          Icon(widget.icon, color: widget.color),
         ],
       ),
     );
@@ -239,10 +238,10 @@ class IconButtonSolo extends StatefulWidget {
   const IconButtonSolo({
     super.key,
     required this.color,
-    this.radius = 10,
+    this.radius = 8,
     required this.icon,
-    this.iconsize = 24,
-    this.padding = 10,
+    this.iconsize = 20,
+    this.padding = 5,
   });
 
   final Color color;

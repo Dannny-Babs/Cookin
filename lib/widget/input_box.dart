@@ -48,6 +48,9 @@ class _InputBoxState extends State<InputBox> {
               ),
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
+            contentPadding: EdgeInsets.all(
+              widget.marginVertical,
+            ),
             hintText: widget.placeHolder,
           ),
         ),
@@ -115,6 +118,9 @@ class _InputBoxPasswordState extends State<InputBoxPassword> {
               ),
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
+            contentPadding: EdgeInsets.all(
+              widget.marginVertical,
+            ),
             hintText: widget.placeHolder,
           ),
           obscureText: passwordVisibility,
@@ -145,13 +151,13 @@ class InputWithLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyText(
             label,
-            fontSize: 18,
+            fontSize: 16,
           ),
           isPassword
               ? InputBoxPassword(
@@ -219,8 +225,9 @@ class _MyInput_BoxState extends State<MyInput_Box> {
               ),
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
-            contentPadding:
-                EdgeInsets.symmetric(vertical: widget.marginVertical),
+            contentPadding: EdgeInsets.all(
+              widget.marginVertical,
+            ),
             hintText: widget.placeHolder,
             hintStyle: const TextStyle(
               fontSize: 16,

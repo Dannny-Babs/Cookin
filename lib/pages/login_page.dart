@@ -1,13 +1,8 @@
 import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
-import 'package:cookin/utils/colors.dart';
-import 'package:cookin/widget/button.dart';
-import 'package:cookin/widget/divider.dart';
-import 'package:cookin/widget/input_box.dart';
-import 'package:cookin/widget/text.dart';
-import 'package:dev_icons/dev_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:solar_icons/solar_icons.dart';
+import '../utils/utils.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
