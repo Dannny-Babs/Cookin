@@ -2,6 +2,7 @@
 
 import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
+import '../utils/navigatio_bar.dart';
 import '../utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../widget/widget.dart';
@@ -27,13 +28,14 @@ class CreateAccountPage extends StatelessWidget {
                   //   ),
                   SizedBox(height: 20),
                   MyText(
-                  text:  "Create an account",
+                    text: "Create an account",
                     fontSize: 35,
                     fontWeight: FontWeight.w900,
                   ),
                   SizedBox(height: 5),
                   MyText(
-                  text:  "Let’s help you set up your account,\nit won’t take long.",
+                    text:
+                        "Let’s help you set up your account,\nit won’t take long.",
                     fontSize: 16,
                   ),
                   SizedBox(height: 60),
@@ -70,7 +72,7 @@ class CreateAccountPage extends StatelessWidget {
                       bgcolor: AppColors.primaryColor,
                       text: 'Sign Up',
                       fontsize: 22,
-                      page: HomePage(),
+                      page: BottonNavBar(),
                       resppadding: 0.29,
                       sizebox: 5,
                       icon: SolarIconsOutline.arrowRight,

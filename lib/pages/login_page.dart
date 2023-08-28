@@ -1,5 +1,5 @@
-import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
+import 'package:cookin/utils/navigatio_bar.dart';
 import 'package:flutter/material.dart';
 import '../utils/utils.dart';
 import '../widget/widget.dart';
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     bgcolor: AppColors.primaryColor,
                     text: 'Sign In',
                     fontsize: 20,
-                    page: HomePage(),
+                    page: BottonNavBar(),
                     icon: SolarIconsOutline.arrowRight,
                   ),
                   const SizedBox(

@@ -99,13 +99,13 @@ class OverflowCard extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(circleBorderWidth),
-                  child: const DecoratedBox(
+                  child: DecoratedBox(
                     decoration: ShapeDecoration(
-                      shape: CircleBorder(),
+                      shape: const CircleBorder(),
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
+                          'https://source.unsplash.com/random/800x600?lunch&${Random().nextInt(600)}',
                         ),
                       ),
                     ),
@@ -210,14 +210,14 @@ class OverflowCard2 extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 0),
+                  const SizedBox(height: 0),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         FoodnamesSmall(),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Row(
                           children: [
                             Padding(
@@ -268,9 +268,10 @@ class OverflowCard2 extends StatelessWidget {
                             Row(
                               children: [
                                 ClipOval(
-                                  child: Image.asset(
-                                    'images/profile.png',
+                                  child: Image.network(
+                                    'https://source.unsplash.com/random/800x600?faces&${Random().nextInt(700)}',
                                     height: 37,
+                                    width: 37,
                                   ),
                                 ),
                                 const SizedBox(width: 5),
@@ -319,15 +320,15 @@ class OverflowCard2 extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(circleBorderWidth),
+            child: Padding(
+              padding: const EdgeInsets.all(circleBorderWidth),
               child: DecoratedBox(
                 decoration: ShapeDecoration(
-                  shape: CircleBorder(),
+                  shape: const CircleBorder(),
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
+                      'https://source.unsplash.com/random/800x600?lunch&${Random().nextInt(500)}',
                     ),
                   ),
                 ),
