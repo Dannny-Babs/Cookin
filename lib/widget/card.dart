@@ -99,13 +99,13 @@ class OverflowCard extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(circleBorderWidth),
-                  child: DecoratedBox(
+                  child: const DecoratedBox(
                     decoration: ShapeDecoration(
-                      shape: const CircleBorder(),
+                      shape: CircleBorder(),
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          'https://source.unsplash.com/random/800x600?lunch&${Random().nextInt(600)}',
+                          'https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bHVuY2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60',
                         ),
                       ),
                     ),
@@ -320,15 +320,15 @@ class OverflowCard2 extends StatelessWidget {
                 ),
               ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(circleBorderWidth),
+            child: const Padding(
+              padding: EdgeInsets.all(circleBorderWidth),
               child: DecoratedBox(
                 decoration: ShapeDecoration(
-                  shape: const CircleBorder(),
+                  shape: CircleBorder(),
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      'https://source.unsplash.com/random/800x600?lunch&${Random().nextInt(500)}',
+                      'https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bHVuY2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60',
                     ),
                   ),
                 ),
