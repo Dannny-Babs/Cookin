@@ -334,7 +334,7 @@ class _IconButtonSoloState extends State<IconButtonSolo> {
   }
 }
 
-class AnchorTextButton extends StatefulWidget {
+class AnchorTextButton extends StatelessWidget {
   const AnchorTextButton({
     super.key,
     this.fontsize = 14,
@@ -352,17 +352,12 @@ class AnchorTextButton extends StatefulWidget {
   final Color color2;
 
   @override
-  State<AnchorTextButton> createState() => _AnchorTextButtonState();
-}
-
-class _AnchorTextButtonState extends State<AnchorTextButton> {
-  @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            return widget.page;
+            return page;
           },
         ));
       },
@@ -370,23 +365,23 @@ class _AnchorTextButtonState extends State<AnchorTextButton> {
         text: TextSpan(
           style: DefaultTextStyle.of(context)
               .style
-              .copyWith(fontSize: widget.fontsize),
+              .copyWith(fontSize: fontsize),
           children: [
             TextSpan(
-                text: widget.text1,
+                text: text1,
                 style: TextStyle(
-                  color: widget.color1,
-                  fontSize: widget.fontsize, // Amber color
+                  color: color1,
+                  fontSize: fontsize, // Amber color
                   decoration: TextDecoration.none,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Poppins',
                 )),
             TextSpan(
-              text: widget.text2,
+              text: text2,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: widget.color2, // Amber color
+                color: color2, // Amber color
                 decoration: TextDecoration.none,
                 fontFamily: 'Poppins', // No underline
               ),
