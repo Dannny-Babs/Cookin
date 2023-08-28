@@ -7,26 +7,30 @@ class Foodnames extends StatelessWidget {
     'Pasta',
     'Salad',
     'Steak',
-    'Seafood Paella',
-    'Jollof Rice',
+    'Seafood',
+    'Paella',
+    'Jollof ',
     'Miso Soup',
     'Ramen',
     'Tempura',
     'Sashimi',
-    'Nigerian Suya',
+    'Suya',
+    'Shrimp',
     'Taco',
     'Pierogi',
-    'Tandoori Chicken',
-    'Shrimp Scampi',
+    'Tandoori',
+    'Chicken',
+    'Scampi',
     'Pho',
-    'Tuna Tataki',
+    'Tuna',
+    'Tataki',
     'Gyros',
     'Pad Thai',
     'Samosa',
     'Dim Sum',
-    'Chirashi Bowl',
+    'Chirashi',
     'Couscous',
-    'Peking Duck',
+    'Peking',
   ];
 
   final Random random = Random();
@@ -34,11 +38,80 @@ class Foodnames extends StatelessWidget {
   String generateMergedFoodName() {
     String randomFoodName1 = foodNames[random.nextInt(foodNames.length)];
     String randomFoodName2 = foodNames[random.nextInt(foodNames.length)];
-    return '$randomFoodName1 $randomFoodName2';
+    String randomFoodName3 = foodNames[random.nextInt(foodNames.length)];
+    String randomFoodName4 = foodNames[random.nextInt(foodNames.length)];
+    return '$randomFoodName1 $randomFoodName2 \n $randomFoodName3 $randomFoodName4';
   }
 
   @override
   Widget build(BuildContext context) {
-    return Text(generateMergedFoodName());
+    return Text(
+      generateMergedFoodName(),
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.w500,
+          color: Colors.black,
+          fontFamily: 'Poppins'),
+    );
+  }
+}
+
+class FoodnamesSmall extends StatelessWidget {
+  final List<String> foodNames = [
+    'Sushi',
+    'Pasta',
+    'Salad',
+    'Steak',
+    'Seafood',
+    'Paella',
+    'Jollof ',
+    'Miso Soup',
+    'Ramen',
+    'Tempura',
+    'Sashimi',
+    'Suya',
+    'Shrimp',
+    'Taco',
+    'Pierogi',
+    'Tandoori',
+    'Chicken',
+    'Scampi',
+    'Pho',
+    'Tuna',
+    'Tataki',
+    'Gyros',
+    'Pad Thai',
+    'Samosa',
+    'Dim Sum',
+    'Chirashi',
+    'Couscous',
+    'Peking',
+  ];
+
+  final Random random = Random();
+
+  String generateMergedFoodName() {
+    String randomFoodName1 = foodNames[random.nextInt(foodNames.length)];
+    String randomFoodName2 = foodNames[random.nextInt(foodNames.length)];
+    String randomFoodName3 = foodNames[random.nextInt(foodNames.length)];
+
+    return '$randomFoodName1 $randomFoodName2 $randomFoodName3 ';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      generateMergedFoodName(),
+      textAlign: TextAlign.center,
+      maxLines: 1,
+      style: const TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.w500,
+        color: Colors.black,
+        fontFamily: 'Poppins',
+        overflow: TextOverflow.ellipsis,
+      ),
+    );
   }
 }

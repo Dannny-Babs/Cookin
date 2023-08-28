@@ -1,5 +1,6 @@
 import 'package:cookin/pages/create_account.dart';
 import 'package:cookin/pages/login_page.dart';
+import 'package:cookin/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:cookin/widget/widget.dart';
 
@@ -67,7 +68,7 @@ class Button extends StatelessWidget {
       style: getButtonStyle(),
       onPressed: onPressed,
       child: MyText(
-        text,
+        text: text,
         color: textColor,
         fontSize: 19,
       ),
@@ -114,7 +115,7 @@ class ButtonWithIcon extends StatelessWidget {
       onPressed: () {},
       icon: icon,
       label: MyText(
-        text,
+        text: text,
         color: textColor,
         fontSize: 18,
         fontWeight: FontWeight.w600,
@@ -169,10 +170,9 @@ class MyFilledButton extends StatefulWidget {
     this.page = const LoginPage(),
     required this.bgcolor,
     this.icon,
+    this.resppadding = 0.3,
     this.sizebox = 10,
     required this.text,
-    this.horizontalpadding = 120,
-    this.verticalpadding = 12,
     this.fontsize = 24,
     this.fontweight = FontWeight.w500,
     this.Borderradius = 12,
@@ -182,8 +182,7 @@ class MyFilledButton extends StatefulWidget {
   final Color color;
   final Color bgcolor;
   final String text;
-  final double horizontalpadding;
-  final double verticalpadding;
+  final double resppadding;
   final double Borderradius;
   final fontweight;
   final double fontsize;
@@ -191,6 +190,61 @@ class MyFilledButton extends StatefulWidget {
 
   @override
   State<MyFilledButton> createState() => _MyFilledButtonState();
+}
+
+class MyFilledButtonSolo extends StatelessWidget {
+  const MyFilledButtonSolo({
+    super.key,
+    required this.color,
+    this.bgcolor = const Color(0xFFF5F5F5),
+    this.resppadding = 0.06,
+    this.sizebox = 10,
+    required this.text,
+    this.fontsize = 18,
+    this.fontweight = FontWeight.normal,
+    this.Borderradius = 12,
+  });
+  final double sizebox;
+
+  final Color color;
+  final Color bgcolor;
+  final String text;
+  final double resppadding;
+  final double Borderradius;
+  final fontweight;
+  final double fontsize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: FilledButton(
+        onPressed: () {},
+        style: FilledButton.styleFrom(
+          backgroundColor: bgcolor,
+          surfaceTintColor: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Borderradius),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * resppadding,
+            vertical: MediaQuery.of(context).size.height *
+                0.008, // Adjust the percentage as needed
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                  color: color, fontSize: fontsize, fontWeight: fontweight),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _MyFilledButtonState extends State<MyFilledButton> {
@@ -205,14 +259,15 @@ class _MyFilledButtonState extends State<MyFilledButton> {
         ));
       },
       style: FilledButton.styleFrom(
-        backgroundColor: widget.bgcolor, // Background color
+        backgroundColor: widget.bgcolor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(widget.Borderradius),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: widget.horizontalpadding,
-          vertical: widget.verticalpadding,
-        ), // Padding
+          horizontal: MediaQuery.of(context).size.width * widget.resppadding,
+          vertical: MediaQuery.of(context).size.height *
+              0.02, // Adjust the percentage as needed
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -224,10 +279,10 @@ class _MyFilledButtonState extends State<MyFilledButton> {
                 fontSize: widget.fontsize,
                 fontWeight: widget.fontweight),
           ),
-           SizedBox(
+          SizedBox(
             width: widget.sizebox,
           ),
-          Icon(widget.icon, color: widget.color), // Icon with default styling
+          Icon(widget.icon, color: widget.color),
         ],
       ),
     );
@@ -238,10 +293,10 @@ class IconButtonSolo extends StatefulWidget {
   const IconButtonSolo({
     super.key,
     required this.color,
-    this.radius = 10,
+    this.radius = 8,
     required this.icon,
-    this.iconsize = 24,
-    this.padding = 10,
+    this.iconsize = 20,
+    this.padding = 5,
   });
 
   final Color color;
@@ -332,6 +387,52 @@ class AnchorTextButton extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class IconButtonNav extends StatefulWidget {
+  const IconButtonNav({
+    super.key,
+    required this.color,
+    this.radius = 10,
+    required this.icon,
+    this.iconsize = 24,
+    this.flex = 1,
+    this.padding = 10,
+  });
+
+  final Color color;
+  final double radius;
+  final int flex;
+  final icon;
+  final double iconsize;
+  final double padding;
+
+  @override
+  State<IconButtonNav> createState() => _IconButtonNavState();
+}
+
+class _IconButtonNavState extends State<IconButtonNav> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius:
+            BorderRadius.circular(widget.radius), // Border radius of 5
+        color: AppColors.primaryColor,
+
+        // Grey color
+      ),
+      child: IconButton(
+        onPressed: () {},
+        padding: EdgeInsets.all(widget.padding), // Padding of 10 for all sides
+        iconSize: widget.iconsize, // Size of the icon
+        icon: Icon(
+          widget.icon, // Icon is arrow_ios_rounded
+          color: widget.color, // White color for the icon
         ),
       ),
     );

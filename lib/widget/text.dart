@@ -3,8 +3,9 @@ import 'package:cookin/utils/utils.dart';
 
 class MyText extends StatelessWidget {
   const MyText(
-    this.text, {
+    {
     super.key,
+    required this.text, 
     this.fontWeight = FontWeight.normal,
     this.fontSize = 18,
     this.color = AppColors.textColor,

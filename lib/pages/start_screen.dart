@@ -97,7 +97,7 @@ class startScreen extends StatelessWidget {
                     text: 'Start Cooking',
                     color: AppColors.white,
                     Borderradius: 15,
-                    horizontalpadding: 75,
+                    resppadding: 0.2,
                   ),
                   const SizedBox(
                     height: 80,

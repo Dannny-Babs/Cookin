@@ -1,13 +1,8 @@
-import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
-import 'package:cookin/utils/colors.dart';
-import 'package:cookin/widget/button.dart';
-import 'package:cookin/widget/divider.dart';
-import 'package:cookin/widget/input_box.dart';
-import 'package:cookin/widget/text.dart';
-import 'package:dev_icons/dev_icons.dart';
+import 'package:cookin/utils/navigatio_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:solar_icons/solar_icons.dart';
+import '../utils/utils.dart';
+import '../widget/widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -37,13 +32,13 @@ class _LoginPageState extends State<LoginPage> {
                           CrossAxisAlignment.start, // Align text to the left
                       children: [
                         MyText(
-                          'Hello,',
+                          text:'Hello,',
                           color: Colors.black,
                           fontSize: 35,
                           fontWeight: FontWeight.w600,
                         ),
                         MyText(
-                          'Welcome Back!',
+                          text:'Welcome Back!',
                           color: Colors.black54,
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
@@ -59,14 +54,13 @@ class _LoginPageState extends State<LoginPage> {
                         CrossAxisAlignment.start, // Align contents to the left
                     children: [
                       MyText(
-                        'Email',
+                       text: 'Email',
                         fontSize: 18,
                       ),
                       InputBox(
                         height: 50,
                         borderRadius: 10,
                         placeHolder: 'Enter Email',
-                        width: 330,
                         marginVertical: 5,
                       ),
                     ],
@@ -78,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MyText(
-                        'Password',
+                       text: 'Password',
                         fontSize: 18,
                       ),
                       InputBoxPassword(
@@ -86,7 +80,6 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: 10,
                         isPassword: true,
                         placeHolder: 'Enter Password',
-                        width: 330,
                         marginVertical: 5,
                       ),
                     ],
@@ -109,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     bgcolor: AppColors.primaryColor,
                     text: 'Sign In',
                     fontsize: 20,
-                    page: HomePage(),
+                    page: BottonNavBar(),
                     icon: SolarIconsOutline.arrowRight,
                   ),
                   const SizedBox(

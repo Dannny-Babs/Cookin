@@ -2,15 +2,10 @@
 
 import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
-import 'package:cookin/utils/colors.dart';
-import 'package:cookin/widget/button.dart';
-import 'package:cookin/widget/check_box.dart';
-import 'package:cookin/widget/divider.dart';
-import 'package:cookin/widget/input_box.dart';
-import 'package:cookin/widget/text.dart';
-import 'package:dev_icons/dev_icons.dart';
+import '../utils/navigatio_bar.dart';
+import '../utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:solar_icons/solar_icons.dart';
+import '../widget/widget.dart';
 
 class CreateAccountPage extends StatelessWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -27,47 +22,44 @@ class CreateAccountPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20),
-                  IconButtonSolo(
-                    color: Colors.black38,
-                    icon: Icons.arrow_back_ios_new_rounded,
-                  ),
+                  //   IconButtonSolo(
+                  //     color: Colors.black38,
+                  //    icon: Icons.arrow_back_ios_new_rounded,
+                  //   ),
                   SizedBox(height: 20),
                   MyText(
-                    "Create an account",
-                    fontSize: 27,
-                    fontWeight: FontWeight.w600,
+                    text: "Create an account",
+                    fontSize: 35,
+                    fontWeight: FontWeight.w900,
                   ),
                   SizedBox(height: 5),
                   MyText(
-                    "Let’s help you set up your account,\nit won’t take long.",
+                    text:
+                        "Let’s help you set up your account,\nit won’t take long.",
                     fontSize: 16,
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 60),
                   InputWithLabel(
                     label: "Name",
                     placeHolder: "John Doe",
                     height: 50,
-                    width: 350,
                   ),
                   InputWithLabel(
                     label: "Email",
                     placeHolder: "Enter Email",
                     height: 50,
-                    width: 350,
                   ),
                   InputWithLabel(
                     label: "Password",
                     placeHolder: " Enter your Password",
                     isPassword: true,
                     height: 50,
-                    width: 350,
                   ),
                   InputWithLabel(
                     label: "Confirm Password",
                     placeHolder: "Confirm Password",
                     isPassword: true,
                     height: 50,
-                    width: 350,
                   ),
                   SizedBox(height: 5),
                   CheckBox("Accept terms & Condition"),
@@ -80,9 +72,9 @@ class CreateAccountPage extends StatelessWidget {
                       bgcolor: AppColors.primaryColor,
                       text: 'Sign Up',
                       fontsize: 22,
-                      page: HomePage(),
+                      page: BottonNavBar(),
+                      resppadding: 0.29,
                       sizebox: 5,
-                      horizontalpadding: 125,
                       icon: SolarIconsOutline.arrowRight,
                     ),
                   ),
