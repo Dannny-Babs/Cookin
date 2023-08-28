@@ -1,7 +1,7 @@
 import 'package:cookin/utils/colors.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,12 +18,12 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Row(
                   children: [
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
                 Row(
                   children: [
                     const Flexible(
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: 1.h,
                 ),
                 const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -121,13 +121,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
+                  height: 2.h,
                 ),
-                SingleChildScrollView(
-                  
+                const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    
                     children: [
                       OverflowCard(),
                       OverflowCard(),
@@ -135,6 +133,27 @@ class _HomePageState extends State<HomePage> {
                       OverflowCard(),
                       OverflowCard(),
                       OverflowCard(),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 1.h,
+                ),
+                const MyText(
+                  text: 'New Recipes',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+                const SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      OverflowCard2(),
+                      OverflowCard2(),
+                      OverflowCard2(),
+                      OverflowCard2(),
+                      OverflowCard2(),
+                      OverflowCard2(),
                     ],
                   ),
                 ),

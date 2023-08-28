@@ -1,10 +1,10 @@
 import 'package:cookin/utils/colors.dart';
 import 'package:cookin/utils/food_names.dart';
-import 'package:cookin/widget/button.dart';
+
 import 'package:cookin/widget/text.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class OverflowCard extends StatelessWidget {
@@ -14,21 +14,19 @@ class OverflowCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final Random ran = Random();
     final double circleRadius = 150.0;
     final double circleBorderWidth = 8.0;
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: size.height * 0.23,
-              width: size.width * 0.45,
+              height: 23.8.h,
+              width: Adaptive.w(43),
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -37,13 +35,13 @@ class OverflowCard extends StatelessWidget {
 
               child: Column(
                 children: [
-                  SizedBox(height: size.height * 0.079),
+                  SizedBox(height: 9.h),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
                         Foodnames(),
-                        SizedBox(height: size.height * 0.02),
+                        SizedBox(height: 2.h),
                         Row(
                           children: [
                             Column(
@@ -64,7 +62,7 @@ class OverflowCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: size.width * 0.15),
+                            SizedBox(width: Adaptive.w(13)),
                             IconButton.filled(
                               onPressed: () {},
                               icon: const Icon(SolarIconsOutline.bookmark),
@@ -172,6 +170,171 @@ class StarRatingWidget extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class OverflowCard2 extends StatelessWidget {
+  const OverflowCard2({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const double circleRadius = 110.0;
+    const double circleBorderWidth = 8.0;
+
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      child: Stack(
+        alignment: Alignment.topRight,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: circleRadius / 2.0),
+            child: Container(
+              height: 15.h,
+              width: Adaptive.w(78),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(253, 255, 255, 255),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color.fromRGBO(32, 32, 32, 0.15),
+                    offset: Offset(0, 8),
+                    blurRadius: 26,
+                  ),
+                ],
+              ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 0),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FoodnamesSmall(),
+                        SizedBox(height: 5),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(0.5),
+                              child: Icon(
+                                Icons.star_rounded,
+                                color: Colors.amber[600],
+                                size: 16,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(0.5),
+                              child: Icon(
+                                Icons.star_rounded,
+                                color: Colors.amber[600],
+                                size: 16,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(0.5),
+                              child: Icon(
+                                Icons.star_rounded,
+                                color: Colors.amber[600],
+                                size: 16,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(0.5),
+                              child: Icon(
+                                Icons.star_rounded,
+                                color: Colors.amber[600],
+                                size: 16,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(0.5),
+                              child: Icon(
+                                Icons.star_rounded,
+                                color: Colors.amber[600],
+                                size: 16,
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 1.h),
+                        Row(
+                          children: [
+                            Row(
+                              children: [
+                                ClipOval(
+                                  child: Image.asset(
+                                    'images/profile.png',
+                                    height: 37,
+                                  ),
+                                ),
+                                const SizedBox(width: 5),
+                                const MyText(
+                                  text: 'By James Milner',
+                                  color: Colors.black38,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: Adaptive.w(21)),
+                            Row(
+                              children: [
+                                const Icon(SolarIconsOutline.alarm,
+                                    size: 20, color: Colors.grey),
+                                const SizedBox(width: 5),
+                                MyText(
+                                  text:
+                                      '${(Random().nextInt(45) + 15).toString()} mins',
+                                  color: Colors.black54,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ), // Space for the image
+            ),
+          ),
+          Container(
+            width: circleRadius,
+            height: circleRadius,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(32, 32, 32, 0.15),
+                  offset: Offset(0, 8),
+                  blurRadius: 26,
+                ),
+              ],
+            ),
+            child: const Padding(
+              padding: EdgeInsets.all(circleBorderWidth),
+              child: DecoratedBox(
+                decoration: ShapeDecoration(
+                  shape: CircleBorder(),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
