@@ -1,5 +1,4 @@
 import 'package:cookin/pages/pages.dart';
-import 'package:cookin/utils/navigatio_bar.dart';
 import 'package:cookin/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
                 .copyWith(background: AppColors.white),
           ),
-          home: const BottonNavBar(),
+          home: const startScreen(),
         );
       },
     );

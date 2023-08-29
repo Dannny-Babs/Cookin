@@ -101,7 +101,9 @@ class OverflowCard extends StatelessWidget {
                   padding: EdgeInsets.all(circleBorderWidth),
                   child: const DecoratedBox(
                     decoration: ShapeDecoration(
-                      shape: CircleBorder(),
+                      shape: CircleBorder(
+                        side: BorderSide(color: Colors.black26),
+                      ),
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
@@ -193,7 +195,7 @@ class OverflowCard2 extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: 15.h,
+              height: 12.8.h,
               width: Adaptive.w(78),
               decoration: BoxDecoration(
                 color: const Color.fromARGB(253, 255, 255, 255),
@@ -324,7 +326,9 @@ class OverflowCard2 extends StatelessWidget {
               padding: EdgeInsets.all(circleBorderWidth),
               child: DecoratedBox(
                 decoration: ShapeDecoration(
-                  shape: CircleBorder(),
+                  shape: CircleBorder(
+                    side: BorderSide(color: Colors.black26),
+                  ),
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(

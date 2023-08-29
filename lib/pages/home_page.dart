@@ -1,8 +1,8 @@
 import 'package:cookin/utils/colors.dart';
+import 'package:cookin/widget/modal.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:solar_icons/solar_icons.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                     const Flexible(
                       flex: 5,
                       child: MyInput_Box(
-                        placeHolder: 'Search Recipe',
+                        placeHolder: 'Search Recipes',
                         marginVertical: 4,
                       ),
                     ),
@@ -69,10 +69,9 @@ class _HomePageState extends State<HomePage> {
                       width: MediaQuery.of(context).size.width * 0.02,
                     ),
                     const Flexible(
-                        flex: 1,
-                        child: IconButtonNav(
-                            color: Colors.white,
-                            icon: SolarIconsOutline.tuning_2)),
+                      flex: 1,
+                      child: FilterModal(),
+                    ),
                   ],
                 ),
                 SizedBox(

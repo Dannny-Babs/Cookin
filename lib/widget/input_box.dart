@@ -33,7 +33,9 @@ class _InputBoxState extends State<InputBox> {
         child: TextField(
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
-            hintStyle: const TextStyle(fontSize: 14),
+            hintStyle: const TextStyle(
+              fontSize: 15,
+            ),
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 width: 1.2,
@@ -63,7 +65,7 @@ class InputBoxPassword extends StatefulWidget {
   const InputBoxPassword({
     super.key,
     this.height = 50,
-    this.placeHolder = 'Email',
+    this.placeHolder = ' Email',
     this.borderRadius = 12,
     this.marginVertical = 6,
     this.isPassword = false,
@@ -91,7 +93,7 @@ class _InputBoxPasswordState extends State<InputBoxPassword> {
         child: TextField(
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
-            hintStyle: const TextStyle(fontSize: 14),
+            hintStyle: const TextStyle(fontSize: 15),
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(passwordVisibility

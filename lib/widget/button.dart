@@ -1,6 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:cookin/pages/create_account.dart';
 import 'package:cookin/pages/login_page.dart';
 import 'package:cookin/utils/colors.dart';
+import 'package:cookin/utils/navigatio_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:cookin/widget/widget.dart';
 
@@ -192,6 +195,48 @@ class MyFilledButton extends StatefulWidget {
   State<MyFilledButton> createState() => _MyFilledButtonState();
 }
 
+class _MyFilledButtonState extends State<MyFilledButton> {
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return widget.page;
+          },
+        ));
+      },
+      style: FilledButton.styleFrom(
+        backgroundColor: widget.bgcolor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(widget.Borderradius),
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * widget.resppadding,
+          vertical: MediaQuery.of(context).size.height *
+              0.02, // Adjust the percentage as needed
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            widget.text,
+            style: TextStyle(
+                color: widget.color,
+                fontSize: widget.fontsize,
+                fontWeight: widget.fontweight),
+          ),
+          SizedBox(
+            width: widget.sizebox,
+          ),
+          Icon(widget.icon, color: widget.color),
+        ],
+      ),
+    );
+  }
+}
+
 class MyFilledButtonSolo extends StatelessWidget {
   const MyFilledButtonSolo({
     super.key,
@@ -242,48 +287,6 @@ class MyFilledButtonSolo extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _MyFilledButtonState extends State<MyFilledButton> {
-  @override
-  Widget build(BuildContext context) {
-    return FilledButton(
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            return widget.page;
-          },
-        ));
-      },
-      style: FilledButton.styleFrom(
-        backgroundColor: widget.bgcolor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(widget.Borderradius),
-        ),
-        padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * widget.resppadding,
-          vertical: MediaQuery.of(context).size.height *
-              0.02, // Adjust the percentage as needed
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            widget.text,
-            style: TextStyle(
-                color: widget.color,
-                fontSize: widget.fontsize,
-                fontWeight: widget.fontweight),
-          ),
-          SizedBox(
-            width: widget.sizebox,
-          ),
-          Icon(widget.icon, color: widget.color),
-        ],
       ),
     );
   }
@@ -363,9 +366,8 @@ class AnchorTextButton extends StatelessWidget {
       },
       child: RichText(
         text: TextSpan(
-          style: DefaultTextStyle.of(context)
-              .style
-              .copyWith(fontSize: fontsize),
+          style:
+              DefaultTextStyle.of(context).style.copyWith(fontSize: fontsize),
           children: [
             TextSpan(
                 text: text1,
@@ -393,8 +395,9 @@ class AnchorTextButton extends StatelessWidget {
   }
 }
 
-class IconButtonNav extends StatefulWidget {
-  const IconButtonNav({
+// ignore: camel_case_types
+class Icon_Button extends StatefulWidget {
+  const Icon_Button({
     super.key,
     required this.color,
     this.radius = 10,
@@ -412,10 +415,10 @@ class IconButtonNav extends StatefulWidget {
   final double padding;
 
   @override
-  State<IconButtonNav> createState() => _IconButtonNavState();
+  State<Icon_Button> createState() => _Icon_ButtonState();
 }
 
-class _IconButtonNavState extends State<IconButtonNav> {
+class _Icon_ButtonState extends State<Icon_Button> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -434,6 +437,151 @@ class _IconButtonNavState extends State<IconButtonNav> {
           widget.icon, // Icon is arrow_ios_rounded
           color: widget.color, // White color for the icon
         ),
+      ),
+    );
+  }
+}
+
+class MyFilledBtn extends StatelessWidget {
+  const MyFilledBtn({
+    super.key,
+    required this.color,
+    this.bgcolor = const Color(0xFFF5F5F5),
+    this.resppadding = 0.06,
+    this.sizebox = 10,
+    this.page = const BottonNavBar(),
+    required this.text,
+    this.fontsize = 18,
+    this.fontweight = FontWeight.normal,
+    this.Borderradius = 12,
+    required this.navigateToNextPage, // Add this parameter
+  });
+  // ignore: prefer_typing_uninitialized_variables
+  final page;
+  final double sizebox;
+  final Color color;
+  final Color bgcolor;
+  final String text;
+  final double resppadding;
+
+  final double Borderradius;
+  final FontWeight fontweight;
+  final double fontsize;
+  final bool navigateToNextPage; // Add this parameter
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: FilledButton(
+        onPressed: () {
+          if (navigateToNextPage) {
+            Navigator.pop(context); // Navigate back
+          } else {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return page;
+              },
+            ));
+          }
+        },
+        style: FilledButton.styleFrom(
+          backgroundColor: bgcolor,
+          surfaceTintColor: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Borderradius),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * resppadding,
+            vertical: MediaQuery.of(context).size.height * 0.008,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                color: color,
+                fontSize: fontsize,
+                fontWeight: fontweight,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyOutlinedButton extends StatelessWidget {
+  final Color color;
+  final Color bgcolor;
+  final double width;
+  final String text;
+  const MyOutlinedButton(
+      {Key? key,
+      required this.color,
+      required this.bgcolor,
+      required this.width,
+      required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(width: this.width, color: AppColors.primaryColor),
+        color: this.color,
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+      child: Text(
+        this.text,
+        style: TextStyle(color: this.bgcolor, fontSize: 14),
+      ),
+    );
+  }
+}
+
+class MyOutlinedButton2 extends StatelessWidget {
+  final Color color;
+  final Color bgcolor;
+  final double width;
+  final String text;
+  const MyOutlinedButton2(
+      {Key? key,
+      required this.color,
+      required this.bgcolor,
+      required this.width,
+      required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(width: this.width, color: AppColors.primaryColor),
+        color: this.color,
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+      child: Row(
+        children: [
+          Text(
+            this.text,
+            style: TextStyle(color: this.bgcolor, fontSize: 14),
+          ),
+          SizedBox(
+            width: 1,
+          ),
+          Icon(
+            Icons.star_rounded,
+            color: this.bgcolor,
+          )
+        ],
       ),
     );
   }

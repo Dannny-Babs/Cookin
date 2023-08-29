@@ -32,13 +32,13 @@ class _LoginPageState extends State<LoginPage> {
                           CrossAxisAlignment.start, // Align text to the left
                       children: [
                         MyText(
-                          text:'Hello,',
+                          text: 'Hello,',
                           color: Colors.black,
                           fontSize: 35,
                           fontWeight: FontWeight.w600,
                         ),
                         MyText(
-                          text:'Welcome Back!',
+                          text: 'Welcome Back!',
                           color: Colors.black54,
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
@@ -54,13 +54,13 @@ class _LoginPageState extends State<LoginPage> {
                         CrossAxisAlignment.start, // Align contents to the left
                     children: [
                       MyText(
-                       text: 'Email',
+                        text: 'Email',
                         fontSize: 18,
                       ),
                       InputBox(
                         height: 50,
                         borderRadius: 10,
-                        placeHolder: 'Enter Email',
+                        placeHolder: '\t\tEnter Email',
                         marginVertical: 5,
                       ),
                     ],
@@ -72,14 +72,14 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MyText(
-                       text: 'Password',
+                        text: 'Password',
                         fontSize: 18,
                       ),
                       InputBoxPassword(
                         height: 50,
                         borderRadius: 10,
                         isPassword: true,
-                        placeHolder: 'Enter Password',
+                        placeHolder: '\t\tEnter Password',
                         marginVertical: 5,
                       ),
                     ],
