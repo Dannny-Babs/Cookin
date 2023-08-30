@@ -1,5 +1,6 @@
 import 'package:cookin/widget/text.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({super.key});
@@ -13,8 +14,8 @@ class NotificationCard extends StatelessWidget {
         ),
         color: Color.fromARGB(255, 217, 217, 217),
       ),
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -25,6 +26,9 @@ class NotificationCard extends StatelessWidget {
                   text: 'New Recipe Alert!',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
+                ),
+                SizedBox(
+                  height: 1.h,
                 ),
                 Text(
                   "Try out our new pasta recipe! It's absolutely\n mouth-watering  and full of flavor. ",
