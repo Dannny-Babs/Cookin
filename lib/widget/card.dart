@@ -37,13 +37,13 @@ class OverflowCard extends StatelessWidget {
 
               child: Column(
                 children: [
-                  SizedBox(height: 70),
+                  const SizedBox(height: 70),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
                         Foodnames(),
-                        SizedBox(height: 2),
+                        const SizedBox(height: 2),
                         Row(
                           children: [
                             Column(
@@ -64,7 +64,7 @@ class OverflowCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 55),
+                            const SizedBox(width: 55),
                             IconButton.filled(
                               onPressed: () {},
                               icon: const Icon(SolarIconsOutline.bookmark),
@@ -200,8 +200,8 @@ class OverflowCard2 extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: height*.15,
-              width: width*.9,
+              height: height * .15,
+              width: width * .9,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(253, 255, 255, 255),
                 borderRadius: BorderRadius.circular(16),
@@ -269,7 +269,7 @@ class OverflowCard2 extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                           children: [
                             Row(
@@ -290,7 +290,7 @@ class OverflowCard2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 90),
+                            const SizedBox(width: 90),
                             Row(
                               children: [
                                 const Icon(SolarIconsOutline.alarm,
@@ -359,7 +359,7 @@ class FoodCard extends StatelessWidget {
       width: 370,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage("images/food.png"),
           fit: BoxFit.cover,
         ),
@@ -369,7 +369,7 @@ class FoodCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
             colors: [
-              Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
+              const Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
               Colors.black.withOpacity(0.7), // Solid black
             ],
             begin: Alignment.topCenter,
@@ -388,7 +388,7 @@ class FoodCard extends StatelessWidget {
                   child: StarRatingWidget(),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 115, // Adjust the height as needed
               ),
               Row(
@@ -399,7 +399,7 @@ class FoodCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         FoodnamesSmall2(),
-                        MyText(
+                        const MyText(
                           text: 'By Chef Dammy',
                           fontSize: 12,
                           color: AppColors.white,
@@ -408,35 +408,40 @@ class FoodCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: Adaptive.w(19),
+                    width: Adaptive.w(5),
                   ),
-                  Row(
-                    children: [
-                      const Icon(SolarIconsOutline.alarm,
-                          size: 20, color: Colors.white70),
-                      const SizedBox(width: 5),
-                      MyText(
-                        text: '${(Random().nextInt(45) + 15).toString()} mins',
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      SizedBox(
-                        width: 1.h,
-                      ),
-                      IconButton.filled(
-                        onPressed: () {},
-                        icon: const Icon(SolarIconsBold.bookmark),
-                        iconSize: 18,
-                        color: AppColors.primaryColor,
-                        style: IconButton.styleFrom(
-                          backgroundColor: AppColors.white,
+                  Flexible(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Icon(SolarIconsOutline.alarm,
+                            size: 20, color: Colors.white70),
+                        const SizedBox(width: 5),
+                        MyText(
+                          text:
+                              '${(Random().nextInt(45) + 15).toString()} mins',
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          width: 0.5.h,
+                        ),
+                        IconButton.filled(
+                          onPressed: () {},
+                          icon: const Icon(SolarIconsBold.bookmark),
+                          iconSize: 18,
+                          color: AppColors.primaryColor,
+                          style: IconButton.styleFrom(
+                            backgroundColor: AppColors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
