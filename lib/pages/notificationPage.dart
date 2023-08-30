@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cookin/utils/utils.dart';
 import 'package:cookin/widget/notification_alert.dart';
 import 'package:cookin/widget/widget.dart';

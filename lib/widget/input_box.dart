@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';

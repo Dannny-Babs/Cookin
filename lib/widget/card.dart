@@ -25,7 +25,7 @@ class OverflowCard extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: circleRadius / 2.0),
+            padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
               height: height * .27,
               width: width / 2,
@@ -99,9 +99,9 @@ class OverflowCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.all(circleBorderWidth),
-                  child: const DecoratedBox(
+                  child: DecoratedBox(
                     decoration: ShapeDecoration(
                       shape: CircleBorder(
                         side: BorderSide(color: Colors.black26),
@@ -134,6 +134,10 @@ class OverflowCard extends StatelessWidget {
 
 class StarRatingWidget extends StatelessWidget {
   final Random random = Random();
+
+  StarRatingWidget({super.key});
+
+ 
 
   double generateRandomRating() {
     return random.nextDouble() * 5.0; // Generate a rating between 0.0 and 5.0

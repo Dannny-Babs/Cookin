@@ -39,7 +39,7 @@ class _FilterModalState extends State<FilterModal> {
                           height: 2.h,
                         ),
                         Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
