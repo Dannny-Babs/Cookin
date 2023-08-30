@@ -173,7 +173,7 @@ class MyFilledButton extends StatefulWidget {
     this.page = const LoginPage(),
     required this.bgcolor,
     this.icon,
-    this.resppadding = 0.3,
+    this.resppadding = 0.27,
     this.sizebox = 10,
     required this.text,
     this.fontsize = 24,
