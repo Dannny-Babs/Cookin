@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:cookin/utils/utils.dart';
 import 'package:cookin/widget/text.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({super.key});
