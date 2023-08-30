@@ -80,11 +80,13 @@ class _HomePageState extends State<HomePage> {
                 const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       RajiFilledButtonSolo(
                         bgcolor: Colors.white,
                         color: AppColors.primaryColor,
                         text: "All",
+                        active: true,
                       ),
                       RajiFilledButtonSolo(
                         bgcolor: Colors.white,

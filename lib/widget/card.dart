@@ -27,7 +27,7 @@ class OverflowCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: height * .27,
+              height: height * .28,
               width: width / 2,
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
