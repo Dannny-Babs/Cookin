@@ -37,7 +37,7 @@ class OverflowCard extends StatelessWidget {
 
               child: Column(
                 children: [
-                  SizedBox(height: 9.h),
+                  SizedBox(height: 70),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
@@ -64,7 +64,7 @@ class OverflowCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: Adaptive.w(13)),
+                            SizedBox(width: 55),
                             IconButton.filled(
                               onPressed: () {},
                               icon: const Icon(SolarIconsOutline.bookmark),
@@ -192,6 +192,7 @@ class OverflowCard2 extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
 
     return Container(
+      height: 220,
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
         alignment: Alignment.topRight,
@@ -206,7 +207,7 @@ class OverflowCard2 extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: const [
                   BoxShadow(
-                    color: Color.fromRGBO(32, 32, 32, 0.15),
+                    color: Color.fromRGBO(32, 32, 32, 0.12),
                     offset: Offset(0, 8),
                     blurRadius: 26,
                   ),
@@ -268,7 +269,7 @@ class OverflowCard2 extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(height: 1.h),
+                        SizedBox(height: 10),
                         Row(
                           children: [
                             Row(
@@ -289,7 +290,7 @@ class OverflowCard2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: Adaptive.w(21)),
+                            SizedBox(width: 90),
                             Row(
                               children: [
                                 const Icon(SolarIconsOutline.alarm,
@@ -320,7 +321,7 @@ class OverflowCard2 extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromRGBO(32, 32, 32, 0.15),
+                  color: Color.fromRGBO(32, 32, 32, 0.064),
                   offset: Offset(0, 8),
                   blurRadius: 26,
                 ),
