@@ -17,6 +17,8 @@ class OverflowCard extends StatelessWidget {
     final double circleRadius = 150.0;
     final double circleBorderWidth = 8.0;
 
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
@@ -25,8 +27,8 @@ class OverflowCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: 23.8.h,
-              width: Adaptive.w(43),
+              height: height * .26,
+              width: width / 2,
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -41,7 +43,7 @@ class OverflowCard extends StatelessWidget {
                     child: Column(
                       children: [
                         Foodnames(),
-                        SizedBox(height: 2.h),
+                        SizedBox(height: 2),
                         Row(
                           children: [
                             Column(
@@ -186,6 +188,8 @@ class OverflowCard2 extends StatelessWidget {
   Widget build(BuildContext context) {
     const double circleRadius = 110.0;
     const double circleBorderWidth = 8.0;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -195,8 +199,8 @@ class OverflowCard2 extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: 12.8.h,
-              width: Adaptive.w(78),
+              height: height*.15,
+              width: width*.9,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(253, 255, 255, 255),
                 borderRadius: BorderRadius.circular(16),
@@ -399,7 +403,6 @@ class FoodCard extends StatelessWidget {
                           fontSize: 12,
                           color: AppColors.white,
                         ),
-                        
                       ],
                     ),
                   ),
