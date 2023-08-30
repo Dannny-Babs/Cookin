@@ -85,6 +85,7 @@ class _HomePageState extends State<HomePage> {
                         bgcolor: Colors.white,
                         color: AppColors.primaryColor,
                         text: "All",
+                        active: true,
                       ),
                       RajiFilledButtonSolo(
                         bgcolor: Colors.white,

@@ -182,6 +182,7 @@ class RajiFilledButtonSolo extends StatefulWidget {
     this.fontweight = FontWeight.normal,
     this.Borderradius = 12,
     this.onPressed,
+    this.active,
   });
 
   final Color color;
@@ -190,17 +191,23 @@ class RajiFilledButtonSolo extends StatefulWidget {
   final double Borderradius;
   final FontWeight fontweight;
   final double fontsize;
+  final bool? active;
   final VoidCallback? onPressed;
   @override
   State<RajiFilledButtonSolo> createState() => _RajiFilledButtonSoloState();
 }
 
 class _RajiFilledButtonSoloState extends State<RajiFilledButtonSolo> {
-  bool isPressed = false;
+  late bool isPressed;
   // to allow null for a parrameter
+
+   @override
+  void initState() {
+    super.initState();
+    isPressed = widget.active ?? false; // Initialize here
+  }
   @override
   Widget build(BuildContext context) {
-    
     ButtonStyle style = FilledButton.styleFrom(
       backgroundColor: isPressed ? AppColors.primaryColor : widget.bgcolor,
       surfaceTintColor: isPressed ? AppColors.white : widget.color,

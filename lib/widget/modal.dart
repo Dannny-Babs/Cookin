@@ -15,7 +15,7 @@ class _FilterModalState extends State<FilterModal> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     return Center(
       child: GestureDetector(
         onTap: () {
