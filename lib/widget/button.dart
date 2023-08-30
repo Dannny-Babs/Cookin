@@ -221,7 +221,7 @@ class _RajiFilledButtonSoloState extends State<RajiFilledButtonSolo> {
       ),
     );
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.symmetric(horizontal:2.0),
       child: FilledButton(
           onPressed: widget.onPressed ??
               () {
@@ -235,7 +235,7 @@ class _RajiFilledButtonSoloState extends State<RajiFilledButtonSolo> {
             color: isPressed ? AppColors.white : widget.color,
             fontSize: widget.fontsize,
             fontWeight: widget.fontweight,
-          )), // this widget is just neater
+          )),
     );
   }
 }
