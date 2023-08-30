@@ -7,126 +7,6 @@ import 'package:cookin/utils/navigatio_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:cookin/widget/widget.dart';
 
-class Button extends StatelessWidget {
-  const Button({
-    super.key,
-    required this.text,
-    required this.onPressed,
-    this.borderWidth = 0,
-    this.vertical = 10.0,
-    this.horizontal = 130.0,
-    this.backgroundColor = const Color(0xFFB00005),
-    this.textColor = const Color(0xFFFFFFFF),
-  });
-
-  final Color backgroundColor;
-  final Color textColor;
-  final String text;
-  final double borderWidth;
-  final double vertical;
-  final double horizontal;
-  final VoidCallback onPressed;
-
-  factory Button.signup(BuildContext context) {
-    return Button(
-      text: "Sign Up",
-      onPressed: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => ),
-        // );
-      },
-    );
-  }
-  factory Button.login(BuildContext context) {
-    return Button(
-      backgroundColor: const Color(0xFFFFFFFF),
-      text: "Log In",
-      textColor: const Color(0xFF000000),
-      borderWidth: 1,
-      onPressed: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => \),
-        // );
-      },
-    );
-  }
-
-  ButtonStyle getButtonStyle() {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-          EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
-        ),
-        side: MaterialStateProperty.all<BorderSide>(
-            BorderSide(width: borderWidth, color: const Color(0xFFC8D9DE))),
-        shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
-        elevation: MaterialStateProperty.all<double>(0));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: getButtonStyle(),
-      onPressed: onPressed,
-      child: MyText(
-        text: text,
-        color: textColor,
-        fontSize: 19,
-      ),
-    );
-  }
-}
-
-class ButtonWithIcon extends StatelessWidget {
-  const ButtonWithIcon({
-    super.key,
-    required this.icon,
-    required this.text,
-    this.borderWidth = 1,
-    this.vertical = 10.0,
-    this.horizontal = 100.0,
-    this.backgroundColor = const Color(0xFFFFFFFF),
-    this.textColor = const Color.fromARGB(255, 0, 0, 0),
-  });
-
-  final Color backgroundColor;
-  final Color textColor;
-  final String text;
-  final double borderWidth;
-  final double vertical;
-  final double horizontal;
-  final dynamic icon;
-
-  ButtonStyle getButtonStyle() {
-    return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-          EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
-        ),
-        side: MaterialStateProperty.all<BorderSide>(
-            BorderSide(width: borderWidth, color: const Color(0xFFC8D9DE))),
-        shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
-        elevation: MaterialStateProperty.all<double>(0));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      style: getButtonStyle(),
-      onPressed: () {},
-      icon: icon,
-      label: MyText(
-        text: text,
-        color: textColor,
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-      ),
-    );
-  }
-}
-
 class MyIconButton extends StatefulWidget {
   const MyIconButton({
     super.key,
@@ -173,7 +53,7 @@ class MyFilledButton extends StatefulWidget {
     this.page = const LoginPage(),
     required this.bgcolor,
     this.icon,
-    this.resppadding = 0.27,
+    this.resppadding = 0.3,
     this.sizebox = 10,
     required this.text,
     this.fontsize = 24,
@@ -288,6 +168,67 @@ class MyFilledButtonSolo extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RajiFilledButtonSolo extends StatefulWidget {
+  const RajiFilledButtonSolo({
+    super.key,
+    required this.color,
+    required this.text,
+    this.bgcolor = const Color(0xFFF5F5F5),
+    this.fontsize = 18,
+    this.fontweight = FontWeight.normal,
+    this.Borderradius = 12,
+    this.onPressed,
+  });
+
+  final Color color;
+  final Color bgcolor;
+  final String text;
+  final double Borderradius;
+  final FontWeight fontweight;
+  final double fontsize;
+  final VoidCallback? onPressed;
+  @override
+  State<RajiFilledButtonSolo> createState() => _RajiFilledButtonSoloState();
+}
+
+class _RajiFilledButtonSoloState extends State<RajiFilledButtonSolo> {
+  bool isPressed = false;
+  // to allow null for a parrameter
+  @override
+  Widget build(BuildContext context) {
+    
+    ButtonStyle style = FilledButton.styleFrom(
+      backgroundColor: isPressed ? AppColors.primaryColor : widget.bgcolor,
+      surfaceTintColor: isPressed ? AppColors.white : widget.color,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(widget.Borderradius),
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.06,
+        vertical: MediaQuery.of(context).size.height *
+            0.008, // Adjust the percentage as needed
+      ),
+    );
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: FilledButton(
+          onPressed: widget.onPressed ??
+              () {
+                setState(() {
+                  isPressed = !isPressed;
+                });
+              },
+          style: style, // for neatness
+          child: MyText(
+            text: widget.text,
+            color: isPressed ? AppColors.white : widget.color,
+            fontSize: widget.fontsize,
+            fontWeight: widget.fontweight,
+          )), // this widget is just neater
     );
   }
 }

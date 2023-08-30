@@ -1,4 +1,3 @@
-import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
                 .copyWith(background: AppColors.white),
           ),
-          home: const startScreen(),
+          home: const HomePage(),
         );
       },
     );
