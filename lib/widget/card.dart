@@ -271,7 +271,7 @@ class OverflowCard2 extends StatelessWidget {
                               children: [
                                 ClipOval(
                                   child: Image.network(
-                                    'https://source.unsplash.com/random/800x600?faces&${Random().nextInt(700)}',
+                                    'https://images.unsplash.com/photo-1582233479366-6d38bc390a08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60',
                                     height: 37,
                                     width: 37,
                                   ),
@@ -340,6 +340,102 @@ class OverflowCard2 extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class FoodCard extends StatelessWidget {
+  const FoodCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 370,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        image: DecorationImage(
+          image: AssetImage("images/food.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
+              Colors.black.withOpacity(0.7), // Solid black
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: SizedBox(
+                  width: 50,
+                  height: 25,
+                  child: StarRatingWidget(),
+                ),
+              ),
+              SizedBox(
+                height: 115, // Adjust the height as needed
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 140,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FoodnamesSmall2(),
+                        MyText(
+                          text: 'By Chef Dammy',
+                          fontSize: 12,
+                          color: AppColors.white,
+                        ),
+                        
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: Adaptive.w(19),
+                  ),
+                  Row(
+                    children: [
+                      const Icon(SolarIconsOutline.alarm,
+                          size: 20, color: Colors.white70),
+                      const SizedBox(width: 5),
+                      MyText(
+                        text: '${(Random().nextInt(45) + 15).toString()} mins',
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      SizedBox(
+                        width: 1.h,
+                      ),
+                      IconButton.filled(
+                        onPressed: () {},
+                        icon: const Icon(SolarIconsBold.bookmark),
+                        iconSize: 18,
+                        color: AppColors.primaryColor,
+                        style: IconButton.styleFrom(
+                          backgroundColor: AppColors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
