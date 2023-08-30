@@ -14,6 +14,8 @@ class FilterModal extends StatefulWidget {
 class _FilterModalState extends State<FilterModal> {
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Center(
       child: GestureDetector(
         onTap: () {
@@ -21,25 +23,25 @@ class _FilterModalState extends State<FilterModal> {
             context: context,
             builder: (BuildContext context) {
               return SizedBox(
-                height: Adaptive.h(65),
+                height: height,
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 2.h,
+                      const  SizedBox(
+                          height: 2,
                         ),
                         const MyText(
                           text: 'Filter Search',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(
-                          height: 2.h,
+                       const SizedBox(
+                          height: 2,
                         ),
                         Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -75,16 +77,16 @@ class _FilterModalState extends State<FilterModal> {
                                       width: 1),
                                 ],
                               ),
-                              SizedBox(
-                                height: 1.5.h,
+                           const SizedBox(
+                                height: 1.5,
                               ),
                               const MyText(
                                 text: 'Rate',
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
-                              SizedBox(
-                                height: 0.5.h,
+                             const SizedBox(
+                                height: 0.5,
                               ),
                               const Row(
                                 children: [
