@@ -14,8 +14,8 @@ class OverflowCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double circleRadius = 150.0;
-    final double circleBorderWidth = 8.0;
+    const double circleRadius = 150.0;
+    const double circleBorderWidth = 8.0;
 
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -27,7 +27,7 @@ class OverflowCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: height * .26,
+              height: height * .3,
               width: width / 2,
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
@@ -201,7 +201,7 @@ class OverflowCard2 extends StatelessWidget {
             padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
               height: height*.15,
-              width: width*.9,
+              width: width*.96,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(253, 255, 255, 255),
                 borderRadius: BorderRadius.circular(16),

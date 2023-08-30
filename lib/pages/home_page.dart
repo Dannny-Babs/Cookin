@@ -81,40 +81,35 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      MyFilledButtonSolo(
-                        color: Colors.white,
-                        bgcolor: AppColors.primaryColor,
-                        text: 'All',
+                      RajiFilledButtonSolo(
+                        bgcolor: Colors.white,
+                        color: AppColors.primaryColor,
+                        text: "All",
                       ),
-                      MyFilledButtonSolo(
+                      RajiFilledButtonSolo(
                         bgcolor: Colors.white,
                         color: AppColors.primaryColor,
                         text: 'African',
-                        resppadding: 0.03,
                       ),
-                      MyFilledButtonSolo(
+                      RajiFilledButtonSolo(
                         bgcolor: Colors.white,
                         color: AppColors.primaryColor,
                         text: 'Drinks',
-                        resppadding: 0.03,
                       ),
-                      MyFilledButtonSolo(
+                      RajiFilledButtonSolo(
                         bgcolor: Colors.white,
                         color: AppColors.primaryColor,
                         text: 'Intercontinental',
-                        resppadding: 0.03,
                       ),
-                      MyFilledButtonSolo(
+                      RajiFilledButtonSolo(
                         bgcolor: Colors.white,
                         color: AppColors.primaryColor,
                         text: 'Snacks',
-                        resppadding: 0.03,
                       ),
-                      MyFilledButtonSolo(
+                      RajiFilledButtonSolo(
                         bgcolor: Colors.white,
                         color: AppColors.primaryColor,
                         text: 'Asian',
-                        resppadding: 0.03,
                       ),
                     ],
                   ),
