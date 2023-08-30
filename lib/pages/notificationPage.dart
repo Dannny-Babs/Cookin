@@ -52,7 +52,36 @@ class NotificationPage extends StatelessWidget {
                   ),
                 ],
               ),
-              NotificationCard()
+              const SizedBox(
+                height: 30,
+              ),
+              const MyText(
+                text: 'Today',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const NotificationCard(),
+              const NotificationCard(),
+              const NotificationCard(),
+              const NotificationCard(),
+              const SizedBox(
+                height: 20,
+              ),
+              const MyText(
+                text: 'Yesterday',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const NotificationCard(),
+              const NotificationCard(),
+              const NotificationCard(),
+              const NotificationCard(),
             ],
           ),
         ),
