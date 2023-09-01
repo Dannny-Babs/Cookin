@@ -14,11 +14,9 @@ class OverflowCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double circleRadius = 150.0;
-    const double circleBorderWidth = 8.0;
+    final double circleRadius = 150.0;
+    final double circleBorderWidth = 8.0;
 
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
@@ -27,8 +25,8 @@ class OverflowCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: height * .28,
-              width: width / 2,
+              height: 200,
+              width: 180,
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -37,13 +35,13 @@ class OverflowCard extends StatelessWidget {
 
               child: Column(
                 children: [
-                  const SizedBox(height: 70),
+                  SizedBox(height: 70),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
                         Foodnames(),
-                        const SizedBox(height: 2),
+                        SizedBox(height: 2.h),
                         Row(
                           children: [
                             Column(
@@ -64,7 +62,7 @@ class OverflowCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 55),
+                            SizedBox(width: 55),
                             IconButton.filled(
                               onPressed: () {},
                               icon: const Icon(SolarIconsOutline.bookmark),
@@ -188,8 +186,6 @@ class OverflowCard2 extends StatelessWidget {
   Widget build(BuildContext context) {
     const double circleRadius = 110.0;
     const double circleBorderWidth = 8.0;
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
 
     return Container(
       height: 220,
@@ -200,8 +196,8 @@ class OverflowCard2 extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
-              height: height*.15,
-              width: width*.96,
+              height: 115,
+              width: 330,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(253, 255, 255, 255),
                 borderRadius: BorderRadius.circular(16),
@@ -269,7 +265,7 @@ class OverflowCard2 extends StatelessWidget {
                             )
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10),
                         Row(
                           children: [
                             Row(
@@ -290,7 +286,7 @@ class OverflowCard2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 90),
+                            SizedBox(width: 90),
                             Row(
                               children: [
                                 const Icon(SolarIconsOutline.alarm,
@@ -359,7 +355,7 @@ class FoodCard extends StatelessWidget {
       width: 370,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        image: const DecorationImage(
+        image: DecorationImage(
           image: AssetImage("images/food.png"),
           fit: BoxFit.cover,
         ),
@@ -369,7 +365,7 @@ class FoodCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
             colors: [
-              const Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
+              Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
               Colors.black.withOpacity(0.7), // Solid black
             ],
             begin: Alignment.topCenter,
@@ -388,7 +384,7 @@ class FoodCard extends StatelessWidget {
                   child: StarRatingWidget(),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 115, // Adjust the height as needed
               ),
               Row(
@@ -399,7 +395,7 @@ class FoodCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         FoodnamesSmall2(),
-                        const MyText(
+                        MyText(
                           text: 'By Chef Dammy',
                           fontSize: 12,
                           color: AppColors.white,
@@ -408,40 +404,35 @@ class FoodCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: Adaptive.w(5),
+                    width: Adaptive.w(19),
                   ),
-                  Flexible(
-                    flex: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const Icon(SolarIconsOutline.alarm,
-                            size: 20, color: Colors.white70),
-                        const SizedBox(width: 5),
-                        MyText(
-                          text:
-                              '${(Random().nextInt(45) + 15).toString()} mins',
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                  Row(
+                    children: [
+                      const Icon(SolarIconsOutline.alarm,
+                          size: 20, color: Colors.white70),
+                      const SizedBox(width: 5),
+                      MyText(
+                        text: '${(Random().nextInt(45) + 15).toString()} mins',
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      SizedBox(
+                        width: 1.h,
+                      ),
+                      IconButton.filled(
+                        onPressed: () {},
+                        icon: const Icon(SolarIconsBold.bookmark),
+                        iconSize: 18,
+                        color: AppColors.primaryColor,
+                        style: IconButton.styleFrom(
+                          backgroundColor: AppColors.white,
                         ),
-                        SizedBox(
-                          width: 0.5.h,
-                        ),
-                        IconButton.filled(
-                          onPressed: () {},
-                          icon: const Icon(SolarIconsBold.bookmark),
-                          iconSize: 18,
-                          color: AppColors.primaryColor,
-                          style: IconButton.styleFrom(
-                            backgroundColor: AppColors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ],
-              ),
+              )
             ],
           ),
         ),

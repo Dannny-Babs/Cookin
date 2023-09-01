@@ -35,6 +35,8 @@ class Foodnames extends StatelessWidget {
 
   final Random random = Random();
 
+  Foodnames({super.key});
+
   String generateMergedFoodName() {
     String randomFoodName1 = foodNames[random.nextInt(foodNames.length)];
     String randomFoodName2 = foodNames[random.nextInt(foodNames.length)];
@@ -90,6 +92,8 @@ class FoodnamesSmall extends StatelessWidget {
   ];
 
   final Random random = Random();
+
+  FoodnamesSmall({super.key});
 
   String generateMergedFoodName() {
     String randomFoodName1 = foodNames[random.nextInt(foodNames.length)];
@@ -150,10 +154,12 @@ class FoodnamesSmall2 extends StatelessWidget {
 
   final Random random = Random();
 
+  FoodnamesSmall2({super.key});
+
   String generateMergedFoodName() {
     String randomFoodName1 = foodNames[random.nextInt(foodNames.length)];
     String randomFoodName2 = foodNames[random.nextInt(foodNames.length)];
-    String randomFoodName3 = foodNames[random.nextInt(foodNames.length)];
+    
 
     return '$randomFoodName1 $randomFoodName2';
   }

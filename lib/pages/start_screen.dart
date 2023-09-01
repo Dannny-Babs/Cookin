@@ -1,5 +1,5 @@
 // ignore: unused_import
-// ignore_for_file: unused_import, duplicate_ignore
+// ignore_for_file: unused_import, duplicate_ignore, camel_case_types
 
 import 'package:cookin/pages/login_page.dart';
 import 'package:cookin/utils/colors.dart';

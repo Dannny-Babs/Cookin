@@ -1,11 +1,10 @@
 import 'package:cookin/pages/home_page.dart';
 import 'package:cookin/pages/login_page.dart';
 import 'package:cookin/pages/notificationPage.dart';
-import 'package:cookin/pages/saved_recipes.dart';
+import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:solar_icons/solar_icons.dart';
 
 class BottonNavBar extends StatefulWidget {
   const BottonNavBar({super.key});

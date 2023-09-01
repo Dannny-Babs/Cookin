@@ -1,5 +1,3 @@
-import 'package:cookin/widget/card.dart';
-import 'package:cookin/widget/text.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

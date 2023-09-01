@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables, camel_case_types, unnecessary_this
 
 import 'package:cookin/pages/create_account.dart';
 import 'package:cookin/pages/login_page.dart';
@@ -343,7 +343,7 @@ class AnchorTextButton extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
+
 class Icon_Button extends StatefulWidget {
   const Icon_Button({
     super.key,
@@ -404,7 +404,7 @@ class MyFilledBtn extends StatelessWidget {
     this.Borderradius = 12,
     required this.navigateToNextPage, // Add this parameter
   });
-  // ignore: prefer_typing_uninitialized_variables
+
   final page;
   final double sizebox;
   final Color color;
@@ -478,7 +478,7 @@ class MyOutlinedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(2),
+      margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(width: this.width, color: AppColors.primaryColor),
@@ -509,7 +509,7 @@ class MyOutlinedButton2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(2),
+      margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(width: this.width, color: AppColors.primaryColor),
@@ -522,7 +522,7 @@ class MyOutlinedButton2 extends StatelessWidget {
             this.text,
             style: TextStyle(color: this.bgcolor, fontSize: 14),
           ),
-          SizedBox(
+          const SizedBox(
             width: 1,
           ),
           Icon(

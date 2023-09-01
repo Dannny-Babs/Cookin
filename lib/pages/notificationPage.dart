@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cookin/utils/utils.dart';
 import 'package:cookin/widget/notification_alert.dart';
 import 'package:cookin/widget/widget.dart';
@@ -13,7 +15,7 @@ class NotificationPage extends StatelessWidget {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
