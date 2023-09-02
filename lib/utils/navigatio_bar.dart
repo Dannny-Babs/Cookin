@@ -24,6 +24,7 @@ class _BottonNavBarState extends State<BottonNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       body: pages[_selectedIndex],
       bottomNavigationBar: Container(
         height: 9.h, // Set height to 120px
@@ -42,6 +43,7 @@ class _BottonNavBarState extends State<BottonNavBar> {
           ),
           child: BottomNavigationBar(
             selectedItemColor: AppColors.primaryColor,
+            
             unselectedItemColor: const Color.fromRGBO(85, 127, 116, 0.741),
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
