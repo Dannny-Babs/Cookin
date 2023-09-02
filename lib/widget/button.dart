@@ -53,7 +53,7 @@ class MyFilledButton extends StatefulWidget {
     this.page = const LoginPage(),
     required this.bgcolor,
     this.icon,
-    this.resppadding = 0.3,
+    this.resppadding = 0.27,
     this.sizebox = 10,
     required this.text,
     this.fontsize = 24,
@@ -97,21 +97,24 @@ class _MyFilledButtonState extends State<MyFilledButton> {
               0.02, // Adjust the percentage as needed
         ),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            widget.text,
-            style: TextStyle(
-                color: widget.color,
-                fontSize: widget.fontsize,
-                fontWeight: widget.fontweight),
-          ),
-          SizedBox(
-            width: widget.sizebox,
-          ),
-          Icon(widget.icon, color: widget.color),
-        ],
+      child: Expanded(
+        flex: 0,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.text,
+              style: TextStyle(
+                  color: widget.color,
+                  fontSize: widget.fontsize,
+                  fontWeight: widget.fontweight),
+            ),
+            SizedBox(
+              width: widget.sizebox,
+            ),
+            Icon(widget.icon, color: widget.color),
+          ],
+        ),
       ),
     );
   }
@@ -201,11 +204,12 @@ class _RajiFilledButtonSoloState extends State<RajiFilledButtonSolo> {
   late bool isPressed;
   // to allow null for a parrameter
 
-   @override
+  @override
   void initState() {
     super.initState();
     isPressed = widget.active ?? false; // Initialize here
   }
+
   @override
   Widget build(BuildContext context) {
     ButtonStyle style = FilledButton.styleFrom(
@@ -221,7 +225,7 @@ class _RajiFilledButtonSoloState extends State<RajiFilledButtonSolo> {
       ),
     );
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:2.0),
+      padding: const EdgeInsets.symmetric(horizontal: 2.0),
       child: FilledButton(
           onPressed: widget.onPressed ??
               () {
@@ -342,7 +346,6 @@ class AnchorTextButton extends StatelessWidget {
     );
   }
 }
-
 
 class Icon_Button extends StatefulWidget {
   const Icon_Button({

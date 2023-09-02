@@ -1,5 +1,3 @@
-import 'package:cookin/pages/home_page.dart';
-import 'package:cookin/pages/login_page.dart';
 import 'package:cookin/pages/notificationPage.dart';
 import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/utils.dart';

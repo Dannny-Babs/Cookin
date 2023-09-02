@@ -11,7 +11,7 @@ class NotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 340,
+        width: 370,
         margin: const EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -55,11 +55,11 @@ class NotificationCard extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(12),
+                      Radius.circular(10),
                     ),
                     color: Colors.amber[200],
                   ),
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Icon(
                     SolarIconsBold.fileText,
                     size: 20,

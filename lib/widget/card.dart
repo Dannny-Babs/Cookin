@@ -14,8 +14,8 @@ class OverflowCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double circleRadius = 150.0;
-    final double circleBorderWidth = 8.0;
+    const double circleRadius = 150.0;
+    const double circleBorderWidth = 8.0;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -23,7 +23,7 @@ class OverflowCard extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: circleRadius / 2.0),
+            padding: const EdgeInsets.only(top: circleRadius / 2.0),
             child: Container(
               height: 200,
               width: 180,
@@ -35,7 +35,7 @@ class OverflowCard extends StatelessWidget {
 
               child: Column(
                 children: [
-                  SizedBox(height: 70),
+                  const SizedBox(height: 70),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
@@ -62,7 +62,7 @@ class OverflowCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 55),
+                            const SizedBox(width: 55),
                             IconButton.filled(
                               onPressed: () {},
                               icon: const Icon(SolarIconsOutline.bookmark),
@@ -97,9 +97,9 @@ class OverflowCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.all(circleBorderWidth),
-                  child: const DecoratedBox(
+                  child: DecoratedBox(
                     decoration: ShapeDecoration(
                       shape: CircleBorder(
                         side: BorderSide(color: Colors.black26),
@@ -132,6 +132,8 @@ class OverflowCard extends StatelessWidget {
 
 class StarRatingWidget extends StatelessWidget {
   final Random random = Random();
+
+  StarRatingWidget({super.key});
 
   double generateRandomRating() {
     return random.nextDouble() * 5.0; // Generate a rating between 0.0 and 5.0
@@ -265,7 +267,7 @@ class OverflowCard2 extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                           children: [
                             Row(
@@ -286,7 +288,7 @@ class OverflowCard2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 90),
+                            const SizedBox(width: 90),
                             Row(
                               children: [
                                 const Icon(SolarIconsOutline.alarm,
@@ -355,7 +357,7 @@ class FoodCard extends StatelessWidget {
       width: 370,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage("images/food.png"),
           fit: BoxFit.cover,
         ),
@@ -365,7 +367,7 @@ class FoodCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
             colors: [
-              Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
+              const Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
               Colors.black.withOpacity(0.7), // Solid black
             ],
             begin: Alignment.topCenter,
@@ -384,55 +386,67 @@ class FoodCard extends StatelessWidget {
                   child: StarRatingWidget(),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 115, // Adjust the height as needed
               ),
               Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 140,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  Expanded(
+                    flex: 1,
+                    child: SizedBox(
+                      width: 120,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FoodnamesSmall2(),
+                          const MyText(
+                            text: 'By Chef Dammy',
+                            fontSize: 12,
+                            color: AppColors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    flex: 0,
+                    child: Row(
                       children: [
-                        FoodnamesSmall2(),
+                        const Icon(
+                          SolarIconsOutline.alarm,
+                          size: 18,
+                          color: Colors.white70,
+                        ),
+                        const SizedBox(width: 5),
                         MyText(
-                          text: 'By Chef Dammy',
-                          fontSize: 12,
-                          color: AppColors.white,
+                          text:
+                              '${(Random().nextInt(45) + 15).toString()} mins',
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        SizedBox(
+                          width: 0.5.h,
+                        ),
+                        IconButton.filled(
+                          onPressed: () {},
+                          icon: const Icon(SolarIconsBold.bookmark),
+                          iconSize: 18,
+                          color: AppColors.primaryColor,
+                          style: IconButton.styleFrom(
+                            backgroundColor: AppColors.white,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: Adaptive.w(19),
-                  ),
-                  Row(
-                    children: [
-                      const Icon(SolarIconsOutline.alarm,
-                          size: 20, color: Colors.white70),
-                      const SizedBox(width: 5),
-                      MyText(
-                        text: '${(Random().nextInt(45) + 15).toString()} mins',
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      SizedBox(
-                        width: 1.h,
-                      ),
-                      IconButton.filled(
-                        onPressed: () {},
-                        icon: const Icon(SolarIconsBold.bookmark),
-                        iconSize: 18,
-                        color: AppColors.primaryColor,
-                        style: IconButton.styleFrom(
-                          backgroundColor: AppColors.white,
-                        ),
-                      )
-                    ],
-                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),
