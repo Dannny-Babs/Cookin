@@ -97,8 +97,8 @@ class _MyFilledButtonState extends State<MyFilledButton> {
               0.02, // Adjust the percentage as needed
         ),
       ),
-      child: Expanded(
-        flex: 0,
+      child: FittedBox(
+        fit: BoxFit.fitWidth,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

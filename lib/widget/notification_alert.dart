@@ -19,9 +19,8 @@ class NotificationCard extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Flex(
+            direction: Axis.horizontal,
             children: [
               Expanded(
                 flex: 8,
