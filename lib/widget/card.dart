@@ -394,7 +394,7 @@ class FoodCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
+                    flex: 8,
                     child: SizedBox(
                       width: 120,
                       child: Column(
