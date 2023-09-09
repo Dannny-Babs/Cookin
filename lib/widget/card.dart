@@ -1,21 +1,29 @@
 import 'package:cookin/utils/colors.dart';
-import 'package:cookin/utils/food_names.dart';
 
 import 'package:cookin/widget/text.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
+
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class OverflowCard extends StatelessWidget {
+  final String title;
+  final String rating;
+  final String cookTime;
+  final String thumbnailUrl;
   const OverflowCard({
     super.key,
+    required this.title,
+    required this.cookTime,
+    required this.rating,
+    required this.thumbnailUrl,
   });
 
   @override
   Widget build(BuildContext context) {
     const double circleRadius = 150.0;
     const double circleBorderWidth = 8.0;
+    final size = MediaQuery.of(context).size;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -40,7 +48,18 @@ class OverflowCard extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        Foodnames(),
+                        Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            height: 1.2,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                         SizedBox(height: 2.h),
                         Row(
                           children: [
@@ -54,8 +73,7 @@ class OverflowCard extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                 ),
                                 MyText(
-                                  text:
-                                      '${(Random().nextInt(45) + 15).toString()} mins',
+                                  text: cookTime,
                                   color: Colors.black87,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -97,18 +115,17 @@ class OverflowCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(circleBorderWidth),
+                child: Padding(
+                  padding: const EdgeInsets.all(circleBorderWidth),
                   child: DecoratedBox(
                     decoration: ShapeDecoration(
-                      shape: CircleBorder(
-                        side: BorderSide(color: Colors.black26),
+                      shape: const CircleBorder(
+                        side: BorderSide(
+                            color: Color.fromARGB(66, 164, 164, 164)),
                       ),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                          'https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bHVuY2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60',
-                        ),
+                        image: NetworkImage(thumbnailUrl),
                       ),
                     ),
                   ),
@@ -118,9 +135,40 @@ class OverflowCard extends StatelessWidget {
                 right: 0,
                 top: 55,
                 child: Align(
-                    alignment: Alignment.centerRight,
-                    child:
-                        StarRatingWidget()), // Place your overlay widget here
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.amber[200],
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(16)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: size.height * 0.004,
+                          horizontal: size.height * 0.008),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.star_rounded,
+                              color: Colors.amber,
+                              size: 16,
+                            ),
+                            const SizedBox(width: 2),
+                            Text(
+                              rating, // Display the rating with one decimal place
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ), // Place your overlay widget here
               ),
             ],
           )
@@ -130,58 +178,17 @@ class OverflowCard extends StatelessWidget {
   }
 }
 
-class StarRatingWidget extends StatelessWidget {
-  final Random random = Random();
-
-  StarRatingWidget({super.key});
-
-  double generateRandomRating() {
-    return random.nextDouble() * 5.0; // Generate a rating between 0.0 and 5.0
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    double rating = generateRandomRating();
-
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.amber[200],
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: size.height * 0.004, horizontal: size.height * 0.008),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.star_rounded,
-                color: Colors.amber,
-                size: 16,
-              ),
-              const SizedBox(width: 2),
-              Text(
-                rating.toStringAsFixed(
-                    1), // Display the rating with one decimal place
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class OverflowCard2 extends StatelessWidget {
+  final String title;
+  final String rating;
+  final String cookTime;
+  final String thumbnailUrl;
   const OverflowCard2({
     super.key,
+    required this.title,
+    required this.cookTime,
+    required this.rating,
+    required this.thumbnailUrl,
   });
 
   @override
@@ -221,7 +228,18 @@ class OverflowCard2 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FoodnamesSmall(),
+                        Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          softWrap: true,
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                         const SizedBox(height: 5),
                         Row(
                           children: [
@@ -274,7 +292,7 @@ class OverflowCard2 extends StatelessWidget {
                               children: [
                                 ClipOval(
                                   child: Image.network(
-                                    'https://images.unsplash.com/photo-1582233479366-6d38bc390a08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60',
+                                    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhY2VzfGVufDB8fDB8fHww&auto=format&fit=cover&w=800&q=60',
                                     height: 37,
                                     width: 37,
                                   ),
@@ -295,8 +313,7 @@ class OverflowCard2 extends StatelessWidget {
                                     size: 20, color: Colors.grey),
                                 const SizedBox(width: 5),
                                 MyText(
-                                  text:
-                                      '${(Random().nextInt(45) + 15).toString()} mins',
+                                  text: cookTime,
                                   color: Colors.black54,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
@@ -325,18 +342,16 @@ class OverflowCard2 extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(circleBorderWidth),
+            child: Padding(
+              padding: const EdgeInsets.all(circleBorderWidth),
               child: DecoratedBox(
                 decoration: ShapeDecoration(
-                  shape: CircleBorder(
+                  shape: const CircleBorder(
                     side: BorderSide(color: Colors.black26),
                   ),
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(
-                      'https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bHVuY2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60',
-                    ),
+                    image: NetworkImage(thumbnailUrl),
                   ),
                 ),
               ),
@@ -349,16 +364,27 @@ class OverflowCard2 extends StatelessWidget {
 }
 
 class FoodCard extends StatelessWidget {
-  const FoodCard({Key? key}) : super(key: key);
+  final String title;
+  final String rating;
+  final String cookTime;
+  final String thumbnailUrl;
+  const FoodCard({
+    super.key,
+    required this.title,
+    required this.cookTime,
+    required this.rating,
+    required this.thumbnailUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       width: 370,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        image: const DecorationImage(
-          image: AssetImage("images/food.png"),
+        image: DecorationImage(
+          image: NetworkImage(thumbnailUrl),
           fit: BoxFit.cover,
         ),
       ),
@@ -383,7 +409,38 @@ class FoodCard extends StatelessWidget {
                 child: SizedBox(
                   width: 50,
                   height: 25,
-                  child: StarRatingWidget(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.amber[200],
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(16)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: size.height * 0.004,
+                          horizontal: size.height * 0.008),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.star_rounded,
+                              color: Colors.amber,
+                              size: 16,
+                            ),
+                            const SizedBox(width: 2),
+                            Text(
+                              rating, // Display the rating with one decimal place
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -400,7 +457,12 @@ class FoodCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          FoodnamesSmall2(),
+                          MyText(
+                            text: title,
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                           const MyText(
                             text: 'By Chef Dammy',
                             fontSize: 12,
@@ -424,8 +486,7 @@ class FoodCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         MyText(
-                          text:
-                              '${(Random().nextInt(45) + 15).toString()} mins',
+                          text: cookTime,
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,

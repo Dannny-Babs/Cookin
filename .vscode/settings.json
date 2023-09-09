@@ -5,8 +5,10 @@
         "Borderradius",
         "Botton",
         "Chirashi",
+        "cjsn",
         "cookin",
         "Dammy",
+        "dmsh",
         "fontsize",
         "fontweight",
         "Foodnames",
@@ -17,11 +19,13 @@
         "navigatio",
         "Pierogi",
         "Raji",
+        "rapidapi",
         "resppadding",
         "RGBO",
         "sizebox",
         "Suya",
         "Tataki",
-        "verticalpadding"
+        "verticalpadding",
+        "yummly"
     ]
 }

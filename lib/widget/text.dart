@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cookin/utils/utils.dart';
 
 class MyText extends StatelessWidget {
-  const MyText(
+  const MyText( 
     {
     super.key,
     required this.text, 
