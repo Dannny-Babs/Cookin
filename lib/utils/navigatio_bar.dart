@@ -1,9 +1,8 @@
-import 'package:cookin/pages/notificationPage.dart';
-import 'package:cookin/pages/pages.dart';
-import 'package:cookin/pages/recipe_page.dart';
 import 'package:cookin/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../pages/pages.dart';
 
 class BottonNavBar extends StatefulWidget {
   const BottonNavBar({super.key});
@@ -19,7 +18,7 @@ class _BottonNavBarState extends State<BottonNavBar> {
     HomePage(),
     SavedPage(),
     NotificationPage(),
-    RecipePage(),
+    ProfilePage(),
   ];
 
   @override
@@ -31,8 +30,8 @@ class _BottonNavBarState extends State<BottonNavBar> {
         decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Color.fromRGBO(108, 108, 108, 0.2), offset: Offset(0, -8),
-              blurRadius: 20, // Box shadow blur
+              color: Color.fromRGBO(32, 32, 32, 0.292), offset: Offset(0, -4),
+              blurRadius: 3, // Box shadow blur
             ),
           ],
         ),

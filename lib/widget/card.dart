@@ -60,7 +60,7 @@ class OverflowCard extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(height: 2.h),
+                        SizedBox(height: 2.1.h),
                         Row(
                           children: [
                             Column(
@@ -80,7 +80,7 @@ class OverflowCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 55),
+                            Spacer(),
                             IconButton.filled(
                               onPressed: () {},
                               icon: const Icon(SolarIconsOutline.bookmark),
@@ -306,7 +306,7 @@ class OverflowCard2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 90),
+                            Spacer(),
                             Row(
                               children: [
                                 const Icon(SolarIconsOutline.alarm,
