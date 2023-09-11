@@ -11,7 +11,7 @@ class Recipe {
       required this.rating,
       required this.totalTime});
 
-  factory Recipe.fromJson(dynamic json) {
+ factory Recipe.fromJson(dynamic json) {
     return Recipe(
         name: json['name'] as String,
         images: json['images'][0]['hostedLargeUrl'] as String,
