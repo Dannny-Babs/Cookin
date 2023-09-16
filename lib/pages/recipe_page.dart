@@ -1,10 +1,22 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:cookin/utils/utils.dart';
+import 'package:cookin/widget/categories.dart';
 import 'package:cookin/widget/notification_alert.dart';
 import 'package:flutter/material.dart';
 
-class RecipePage extends StatelessWidget {
-  const RecipePage({super.key});
 
+// ignore: must_be_immutable
+class RecipePage extends StatefulWidget {
+  const RecipePage({
+    super.key,
+  });
+
+  @override
+  State<RecipePage> createState() => _RecipePageState();
+}
+
+class _RecipePageState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,30 +42,22 @@ class RecipePage extends StatelessWidget {
         ],
       ),
       body: const SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-            ],
-          ),
-        ),
-      )),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            Categories(),
+            NotificationCard(),
+            NotificationCard(),
+            NotificationCard(),
+            NotificationCard(),
+            NotificationCard(),
+            NotificationCard(),
+            NotificationCard(),
+            NotificationCard(),
+            NotificationCard(),
+          ],
+        )),
+      ),
     );
   }
 }

@@ -14,11 +14,11 @@ class BottonNavBar extends StatefulWidget {
 class _BottonNavBarState extends State<BottonNavBar> {
   int _selectedIndex = 0;
 
-  final List<Widget> pages = const [
-    HomePage(),
-    SavedPage(),
-    NotificationPage(),
-    ProfilePage(),
+  final List<Widget> pages = [
+    const HomePage(),
+    const SavedPage(),
+    const NotificationPage(),
+    const RecipePage(),
   ];
 
   @override

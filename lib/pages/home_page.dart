@@ -1,5 +1,5 @@
 import 'package:cookin/apis/recipe_apis.dart';
-import 'package:cookin/utils/colors.dart';
+import 'package:cookin/widget/categories.dart';
 import 'package:cookin/widget/modal.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late List<Recipe> _recipes;
   bool _isLoading = true;
-  
 
   @override
   void initState() {
@@ -35,6 +34,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SafeArea(
@@ -100,46 +100,8 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 1.h,
                       ),
-                      const SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RajiFilledButtonSolo(
-                              bgcolor: Colors.white,
-                              color: AppColors.primaryColor,
-                              text: "All",
-                              active: true,
-                            ),
-                            RajiFilledButtonSolo(
-                              bgcolor: Colors.white,
-                              color: AppColors.primaryColor,
-                              text: 'African',
-                            ),
-                            RajiFilledButtonSolo(
-                              bgcolor: Colors.white,
-                              color: AppColors.primaryColor,
-                              text: 'Drinks',
-                            ),
-                            RajiFilledButtonSolo(
-                              bgcolor: Colors.white,
-                              color: AppColors.primaryColor,
-                              text: 'Intercontinental',
-                            ),
-                            RajiFilledButtonSolo(
-                              bgcolor: Colors.white,
-                              color: AppColors.primaryColor,
-                              text: 'Snacks',
-                            ),
-                            RajiFilledButtonSolo(
-                              bgcolor: Colors.white,
-                              color: AppColors.primaryColor,
-                              text: 'Asian',
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
+                      const Categories(),
+                     SizedBox(
                         height: 2.h,
                       ),
                       SingleChildScrollView(

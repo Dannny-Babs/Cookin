@@ -29,7 +29,7 @@ class _FilterModalState extends State<FilterModal> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                      const  SizedBox(
+                        const SizedBox(
                           height: 2,
                         ),
                         const MyText(
@@ -37,7 +37,7 @@ class _FilterModalState extends State<FilterModal> {
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
-                       const SizedBox(
+                        const SizedBox(
                           height: 2,
                         ),
                         Padding(
@@ -53,31 +53,23 @@ class _FilterModalState extends State<FilterModal> {
                               SizedBox(
                                 height: 1.h,
                               ),
-                              const Row(
-                                children: [
-                                  MyOutlinedButton(
-                                      text: 'All',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Newest',
-                                      color: AppColors.primaryColor,
-                                      bgcolor: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Oldest',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Popularity',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
+                              const FilterButtons(
+                                showIcons: false,
+                                icons: [
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded)
+                                ],
+                                options: [
+                                  'All',
+                                  'Newest',
+                                  'Oldest',
+                                  'Popularity'
                                 ],
                               ),
-                           const SizedBox(
+                              const SizedBox(
                                 height: 1.5,
                               ),
                               const MyText(
@@ -85,37 +77,20 @@ class _FilterModalState extends State<FilterModal> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
-                             const SizedBox(
+                              const SizedBox(
                                 height: 0.5,
                               ),
-                              const Row(
-                                children: [
-                                  MyOutlinedButton2(
-                                      color: AppColors.white,
-                                      bgcolor: AppColors.primaryColor,
-                                      width: 1,
-                                      text: '5'),
-                                  MyOutlinedButton2(
-                                      color: AppColors.white,
-                                      bgcolor: AppColors.primaryColor,
-                                      width: 1,
-                                      text: '4'),
-                                  MyOutlinedButton2(
-                                      color: AppColors.primaryColor,
-                                      bgcolor: AppColors.white,
-                                      width: 1,
-                                      text: '3'),
-                                  MyOutlinedButton2(
-                                      color: AppColors.white,
-                                      bgcolor: AppColors.primaryColor,
-                                      width: 1,
-                                      text: '2'),
-                                  MyOutlinedButton2(
-                                      color: AppColors.white,
-                                      bgcolor: AppColors.primaryColor,
-                                      width: 1,
-                                      text: '1'),
+                              const FilterButtons(
+                                showIcons: true,
+                                icons: [
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded),
+                                  Icon(Icons.star_rounded)
                                 ],
+                                options: ['5', '4', '3', '2', '1'],
+                                iconColor: AppColors.primaryColor,
                               ),
                               SizedBox(
                                 height: 1.5.h,
@@ -128,77 +103,41 @@ class _FilterModalState extends State<FilterModal> {
                               SizedBox(
                                 height: 0.5.h,
                               ),
-                              const Wrap(
-                                children: [
-                                  MyOutlinedButton(
-                                      text: 'All',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Cereal',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Vegetables',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Dinner',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Chinese',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Local Dish',
-                                      bgcolor: AppColors.white,
-                                      color: AppColors.primaryColor,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Fruit',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Breakfast',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Spanish',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'Lunch',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                  MyOutlinedButton(
-                                      text: 'African',
-                                      bgcolor: AppColors.primaryColor,
-                                      color: AppColors.white,
-                                      width: 1),
-                                ],
-                              ),
+                              const ModalOptions(options: [
+                                'All',
+                                'Cereal',
+                                'Vegetables',
+                                'Dinner',
+                                'Chinese',
+                                'Local Dish',
+                                'Fruit',
+                                'Breakfast',
+                                'Spanish',
+                                'Lunch',
+                                'African',
+                              ])
                             ],
                           ),
                         ),
                         SizedBox(
                           height: 1.5.h,
                         ),
-                        const MyFilledBtn(
-                          color: AppColors.white,
-                          text: 'Filter',
-                          resppadding: 0.25,
-                          bgcolor: AppColors.primaryColor,
-                          navigateToNextPage: false,
+                        FilledButton(
+                          onPressed: () => Navigator.pop(context),
+                          style: FilledButton.styleFrom(
+                            backgroundColor: AppColors.primaryColor,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: Adaptive.w(25), vertical: 10),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const MyText(
+                            text: 'Apply Filter',
+                            color: AppColors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -246,6 +185,146 @@ class IconButtonNav extends StatelessWidget {
           icon,
           size: iconsize,
           color: color,
+        ),
+      ),
+    );
+  }
+}
+
+class FilterButtons extends StatefulWidget {
+  final List<String> options;
+  final List<Icon> icons; // List of icons corresponding to each option.
+  final bool showIcons; // A flag to determine whether to show icons.
+  final Color? iconColor; // Color for icons, made optional with `?`.
+
+  const FilterButtons({super.key, 
+    required this.options,
+    required this.icons,
+    this.showIcons = true, // Default to showing icons.
+    this.iconColor, // Made optional by removing `required`.
+  });
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _FilterButtonsState createState() => _FilterButtonsState();
+}
+
+class _FilterButtonsState extends State<FilterButtons> {
+  int selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 2,
+      ),
+      child: SizedBox(
+        height: 35, // Adjust the height as needed
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: widget.options.length,
+          itemBuilder: (context, index) => buildButton(index),
+        ),
+      ),
+    );
+  }
+
+  Widget buildButton(int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.only(right: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          color: selectedIndex == index ? AppColors.primaryColor : Colors.white,
+          border: Border.all(color: AppColors.primaryColor, width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          children: [
+            Text(
+              widget.options[index],
+              style: TextStyle(
+                color: selectedIndex == index
+                    ? Colors.white
+                    : AppColors.primaryColor,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(width: 2),
+            if (widget.showIcons && widget.iconColor != null) ...[
+              Icon(
+                widget.icons[index].icon,
+                color: selectedIndex == index ? Colors.white : widget.iconColor,
+              ),
+              // Add spacing between icon and text
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ModalOptions extends StatefulWidget {
+  final List<String> options;
+  // Color for icons, made optional with `?`.
+
+  const ModalOptions({super.key, 
+    required this.options,
+    // Made optional by removing `required`.
+  });
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _ModalOptionsState createState() => _ModalOptionsState();
+}
+
+class _ModalOptionsState extends State<ModalOptions> {
+  int selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 2,
+      ),
+      child: Wrap(
+        spacing: 10, // Adjust the spacing as needed
+        children: List.generate(
+          widget.options.length,
+          (index) => buildButton(index),
+        ),
+      ),
+    );
+  }
+
+  Widget buildButton(int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 2.5),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: selectedIndex == index ? AppColors.primaryColor : Colors.white,
+          border: Border.all(color: AppColors.primaryColor, width: 1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(
+          widget.options[index],
+          style: TextStyle(
+            color:
+                selectedIndex == index ? Colors.white : AppColors.primaryColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );
