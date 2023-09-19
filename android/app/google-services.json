@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "125095256640",
+    "project_id": "eternal-seeker-333707",
+    "storage_bucket": "eternal-seeker-333707.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125095256640:android:8c9b06fce4d89b68f4b5a5",
+        "android_client_info": {
+          "package_name": "com.example.cookin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125095256640-b0gpbn5b5d7q42rjoto285rivarn5ack.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ-cemxAosO-S_0i4eXBqYoWciKMh61pA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125095256640-b0gpbn5b5d7q42rjoto285rivarn5ack.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "125095256640-1mnlafnghmdk9qet4nu8l87j6pqefsrc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.talojobs.myfirstapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

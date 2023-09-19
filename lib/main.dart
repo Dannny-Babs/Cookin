@@ -1,12 +1,21 @@
+import 'package:cookin/firebase_options.dart';
 import 'package:cookin/pages/pages.dart';
 import 'package:cookin/pages/search_page.dart';
 import 'package:cookin/utils/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
   runApp(const MyApp());
+  void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 }
 
 class MyApp extends StatelessWidget {
@@ -32,3 +41,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/*
+Platform  Firebase App Id
+web       1:125095256640:web:0c11e497302e50c0f4b5a5
+android   1:125095256640:android:8c9b06fce4d89b68f4b5a5
+ios       1:125095256640:ios:afb65e9c0bdfe315f4b5a5
+macos     1:125095256640:ios:d39a6b05afba1ce1f4b5a5 */
