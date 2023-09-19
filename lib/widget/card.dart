@@ -478,6 +478,7 @@ class FoodCard extends StatelessWidget {
                   Expanded(
                     flex: 0,
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         const Icon(
                           SolarIconsOutline.alarm,
@@ -511,6 +512,65 @@ class FoodCard extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class IngredientCard extends StatelessWidget {
+  const IngredientCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      width: double.infinity,
+      height: 200,
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(217, 217, 217, 0.498),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 80,
+            width: 80,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              image: const DecorationImage(
+                image: NetworkImage(
+                    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhY2VzfGVufDB8fDB8fHww&auto=format&fit=cover&w=800&q=60'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MyText(
+                text: 'Ingredient',
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+              SizedBox(height: 5),
+              MyText(
+                text: '1 cup of rice',
+                fontSize: 12,
+                color: Colors.black54,
+              ),
+            ],
+          ),
+          const Spacer(),
+          const MyText(
+            text: '300g',
+            fontSize: 18,
+            color: Colors.black54,
+          )
+        ],
       ),
     );
   }

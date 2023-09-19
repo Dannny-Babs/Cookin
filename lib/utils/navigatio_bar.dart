@@ -18,7 +18,7 @@ class _BottonNavBarState extends State<BottonNavBar> {
     const HomePage(),
     const SavedPage(),
     const NotificationPage(),
-    const RecipePage(),
+    const ProfilePage(),
   ];
 
   @override

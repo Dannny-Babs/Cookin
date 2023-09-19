@@ -1,11 +1,11 @@
 import 'package:cookin/apis/recipe_apis.dart';
-import 'package:cookin/widget/categories.dart';
 import 'package:cookin/widget/modal.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../utils/recipe.dart';
+import '../widget/category.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 1.h,
                       ),
-                      const Categories(),
+                      const Categories2(),
                      SizedBox(
                         height: 2.h,
                       ),
