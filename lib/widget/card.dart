@@ -448,7 +448,7 @@ class FoodCard extends StatelessWidget {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
                     flex: 8,
@@ -478,7 +478,7 @@ class FoodCard extends StatelessWidget {
                   Expanded(
                     flex: 0,
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Icon(
                           SolarIconsOutline.alarm,
