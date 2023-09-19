@@ -63,6 +63,7 @@ class _SavedPageState extends State<SavedPage> {
                                 cookTime: recipe.totalTime,
                                 rating: recipe.rating.toString(),
                                 thumbnailUrl: recipe.images,
+                                isLoading: _isLoading,
                               ),
                             );
                           }).toList(),

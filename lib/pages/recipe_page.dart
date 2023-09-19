@@ -71,7 +71,8 @@ class _RecipePageState extends State<RecipePage>
                 ),
               );
             },
-            icon: const Icon(SolarIconsBold.menuDots), // Replace with your icon
+            icon: const Icon(SolarIconsBold.bookmark,
+                color: AppColors.primaryColor), // Replace with your icon
           ),
         ],
       ),
@@ -88,6 +89,7 @@ class _RecipePageState extends State<RecipePage>
                         children: [
                           FoodCard(
                             title: "",
+                            isLoading: _isLoading,
                             cookTime: recipe.totalTime,
                             rating: recipe.rating.toString(),
                             thumbnailUrl: recipe.images,

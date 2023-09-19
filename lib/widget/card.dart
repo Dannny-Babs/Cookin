@@ -2,7 +2,7 @@ import 'package:cookin/utils/colors.dart';
 
 import 'package:cookin/widget/text.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shimmer/shimmer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -368,19 +368,199 @@ class FoodCard extends StatelessWidget {
   final String rating;
   final String cookTime;
   final String thumbnailUrl;
+  final bool isLoading; // Add a boolean flag to control the shimmer effect
+
   const FoodCard({
-    super.key,
+    Key? key,
     required this.title,
     required this.cookTime,
     required this.rating,
     required this.thumbnailUrl,
-  });
+    required this.isLoading, // Pass the isLoading flag as a parameter
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    return Stack(
+      children: [
+        // Actual content
+        Container(
+          width: 370,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+              image: NetworkImage(thumbnailUrl),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: LinearGradient(
+                colors: [
+                  const Color.fromRGBO(0, 0, 0, 0.3), // Semi-transparent black
+                  Colors.black.withOpacity(0.7), // Solid black
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: SizedBox(
+                      width: 50,
+                      height: 25,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.amber[200],
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(16)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: size.height * 0.004,
+                              horizontal: size.height * 0.008),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.star_rounded,
+                                  color: Colors.amber,
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 2),
+                                Text(
+                                  rating, // Display the rating with one decimal place
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 115, // Adjust the height as needed
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        flex: 8,
+                        child: SizedBox(
+                          width: 120,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MyText(
+                                text: title,
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                              const MyText(
+                                text: 'By Chef Dammy',
+                                fontSize: 12,
+                                color: AppColors.white,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        flex: 0,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              SolarIconsOutline.alarm,
+                              size: 18,
+                              color: Colors.white70,
+                            ),
+                            const SizedBox(width: 5),
+                            MyText(
+                              text: cookTime,
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            SizedBox(
+                              width: 0.5.h,
+                            ),
+                            IconButton.filled(
+                              onPressed: () {},
+                              icon: const Icon(SolarIconsBold.bookmark),
+                              iconSize: 18,
+                              color: AppColors.primaryColor,
+                              style: IconButton.styleFrom(
+                                backgroundColor: AppColors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        // Shimmer effect overlaid on top when isLoading is true
+        if (isLoading)
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: 370,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors
+                    .grey[300], // Use a placeholder color while shimmering
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class FoodCard2 extends StatelessWidget {
+  final String title;
+  final String rating;
+  final String cookTime;
+  final String thumbnailUrl;
+
+  const FoodCard2({
+    Key? key,
+    required this.title,
+    required this.cookTime,
+    required this.rating,
+    required this.thumbnailUrl,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Container(
-      width: 370,
+      width: MediaQuery.of(context).size.width * 1,
+      height: 200, // Set the height to 200
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
@@ -411,13 +591,15 @@ class FoodCard extends StatelessWidget {
                   height: 25,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.amber[200],
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(16)),
+                      color: Colors.amber[200],
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                          vertical: size.height * 0.004,
-                          horizontal: size.height * 0.008),
+                        vertical: size.height * 0.004,
+                        horizontal: size.height * 0.008,
+                      ),
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -429,7 +611,7 @@ class FoodCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 2),
                             Text(
-                              rating, // Display the rating with one decimal place
+                              rating,
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -443,9 +625,7 @@ class FoodCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 115, // Adjust the height as needed
-              ),
+              Spacer(),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -459,7 +639,7 @@ class FoodCard extends StatelessWidget {
                         children: [
                           MyText(
                             text: title,
-                            fontSize: 22.0,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
@@ -470,41 +650,6 @@ class FoodCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    flex: 0,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          SolarIconsOutline.alarm,
-                          size: 18,
-                          color: Colors.white70,
-                        ),
-                        const SizedBox(width: 5),
-                        MyText(
-                          text: cookTime,
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        SizedBox(
-                          width: 0.5.h,
-                        ),
-                        IconButton.filled(
-                          onPressed: () {},
-                          icon: const Icon(SolarIconsBold.bookmark),
-                          iconSize: 18,
-                          color: AppColors.primaryColor,
-                          style: IconButton.styleFrom(
-                            backgroundColor: AppColors.white,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ],
