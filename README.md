@@ -17,8 +17,11 @@ Welcome to Cookin, the ultimate recipe app that brings delicious recipes right t
 
 ## Screenshots
 
-![Cookin App Screenshots](screenshots/screenshot1.png)
-![Cookin App Screenshots](screenshots/screenshot2.png)
+![Cookin App Screenshots](screenshots/screenshot(1).png)
+![Cookin App Screenshots](screenshots/screenshot(6).png)
+![Cookin App Screenshots](screenshots/screenshot(7).png)
+![Cookin App Screenshots](screenshots/screenshot(2).png)
+![Cookin App Screenshots](screenshots/screenshot(8).png)
 
 ## Data Source
 
