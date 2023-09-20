@@ -58,7 +58,7 @@ class _CustomTabsBarsState extends State<CustomTabsBars>
         SizedBox(
           width: double.infinity,
           child: TabBarView(controller: _tabController, children: const [
-            IngredientCard2(mealId: 52874),
+            //IngredientCard2(mealId: 52874),
             NotificationCard(),
           ],),
         )

@@ -2,6 +2,7 @@
 import 'dart:ffi';
 
 import 'package:cookin/apis/recipe_reps.dart';
+import 'package:cookin/widget/ingredient.dart';
 import 'package:flutter/material.dart';
 import 'package:cookin/utils/utils.dart';
 import 'package:cookin/widget/card.dart';
@@ -77,7 +78,7 @@ class _RecipePageState extends State<RecipePage>
                             child: FoodCard(
                               title: "",
                               isLoading: false,
-                              thumbnailUrl: index![0].strMealThumb,
+                              thumbnailUrl: index[0].strMealThumb,
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -204,164 +205,4 @@ class _RecipePageState extends State<RecipePage>
       ),
     );
   }
-}
-
-class IngredientCard2 extends StatelessWidget {
-  const IngredientCard2({Key? key, required this.mealId}) : super(key: key);
-
-  final int mealId;
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<ItemModel>(
-      future: RecipesRepository().fetchDetailMeals(mealId),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<Meals>? index = snapshot.data?.meals;
-          // ignore: non_constant_identifier_names
-          List<dynamic> Ingredient = [
-            index![0].strIngredient1,
-            index[0].strIngredient2,
-            index[0].strIngredient3,
-            index[0].strIngredient4,
-            index[0].strIngredient5,
-            index[0].strIngredient6,
-            index[0].strIngredient7,
-            index[0].strIngredient8,
-            index[0].strIngredient9,
-            index[0].strIngredient10,
-            index[0].strIngredient11,
-            index[0].strIngredient12,
-            index[0].strIngredient1,
-            index[0].strIngredient14,
-            index[0].strIngredient15,
-            index[0].strIngredient16,
-            index[0].strIngredient17,
-            index[0].strIngredient18,
-            index[0].strIngredient19,
-            index[0].strIngredient20,
-          ];
-
-          // ignore: non_constant_identifier_names
-          List<dynamic> Measure = snapshot.hasData
-              ? [
-                  index[0].strMeasure1,
-                  index[0].strMeasure2,
-                  index[0].strMeasure3,
-                  index[0].strMeasure4,
-                  index[0].strMeasure5,
-                  index[0].strMeasure6,
-                  index[0].strMeasure7,
-                  index[0].strMeasure8,
-                  index[0].strMeasure9,
-                  index[0].strMeasure10,
-                  index[0].strMeasure11,
-                  index[0].strMeasure12,
-                  index[0].strMeasure13,
-                  index[0].strMeasure14,
-                  index[0].strMeasure15,
-                  index[0].strMeasure16,
-                  index[0].strMeasure17,
-                  index[0].strMeasure18,
-                  index[0].strMeasure19,
-                  index[0].strMeasure20,
-                ]
-              : [];
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: buildIngredientList(Ingredient, Measure),
-          );
-        } else if (snapshot.hasError) {
-          return Center(child: Text("${snapshot.error}"));
-        }
-
-        return const Center(child: CircularProgressIndicator());
-      },
-    );
-  }
-}
-
-class IngredientSearch {
-  static String findIngredientImageUrl(String ingredientName) {
-    // Define the base URL for ingredient images
-    const baseUrl = 'https://www.themealdb.com/images/ingredients/';
-
-    // Replace spaces, underscores, and hyphens with "%20" and make it lowercase
-    final sanitizedIngredientName =
-        ingredientName.replaceAll(RegExp(r'[_ -]'), '%20').toLowerCase();
-
-    // Construct the full image URL
-    final imageUrl = '$baseUrl$sanitizedIngredientName.png';
-
-    return imageUrl;
-  }
-}
-
-Widget buildIngredientList(List<dynamic> ingredients, List<dynamic> measures) {
-  return ListView.builder(
-    physics: const NeverScrollableScrollPhysics(),
-    shrinkWrap: true,
-    itemCount: ingredients.length,
-    itemBuilder: (context, index) {
-      final ingredient = ingredients[index];
-      final measure = measures[index];
-
-      if (ingredient == null || ingredient.isEmpty) {
-        return Container();
-      }
-
-      final ingredientImageUrl =
-          IngredientSearch.findIngredientImageUrl(ingredient);
-
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(217, 217, 217, 0.498),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              Container(
-                height: 80,
-                width: 80,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      ingredientImageUrl,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                ' $ingredient',
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const Spacer(),
-              if (measure != null && measure.isNotEmpty)
-                Text(
-                  '- $measure',
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
 }
