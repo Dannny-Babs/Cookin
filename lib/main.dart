@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
                 .copyWith(background: AppColors.white),
           ),
-          home: RecipePage(mealId: 52874, repository: RecipesRepository()),
+          home: RecipePage(mealId: 52772, repository: RecipesRepository()),
         );
       },
     );
