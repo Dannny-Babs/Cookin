@@ -60,8 +60,6 @@ class _SavedPageState extends State<SavedPage> {
                               padding: const EdgeInsets.all(8.0),
                               child: FoodCard(
                                 title: recipe.name,
-                                cookTime: recipe.totalTime,
-                                rating: recipe.rating.toString(),
                                 thumbnailUrl: recipe.images,
                                 isLoading: _isLoading,
                               ),

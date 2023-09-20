@@ -100,8 +100,6 @@ class _SearchPageState extends State<SearchPage> {
                       final recipe = _recipes[index];
                       return FoodCard2(
                         title: recipe.name,
-                        cookTime: recipe.totalTime,
-                        rating: recipe.rating.toString(),
                         thumbnailUrl: recipe.images,
                       );
                     },

@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SafeArea(
@@ -101,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                         height: 1.h,
                       ),
                       const Categories2(),
-                     SizedBox(
+                      SizedBox(
                         height: 2.h,
                       ),
                       SingleChildScrollView(
@@ -112,8 +111,6 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.all(8.0),
                               child: OverflowCard(
                                 title: recipe.name,
-                                cookTime: recipe.totalTime,
-                                rating: recipe.rating.toString(),
                                 thumbnailUrl: recipe.images,
                               ),
                             );
@@ -136,8 +133,6 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.all(8.0),
                               child: OverflowCard2(
                                 title: recipe.name,
-                                cookTime: recipe.totalTime,
-                                rating: recipe.rating.toString(),
                                 thumbnailUrl: recipe.images,
                               ),
                             );

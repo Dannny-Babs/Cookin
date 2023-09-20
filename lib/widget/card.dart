@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cookin/utils/colors.dart';
 
 import 'package:cookin/widget/text.dart';
@@ -8,14 +10,13 @@ import 'package:solar_icons/solar_icons.dart';
 
 class OverflowCard extends StatelessWidget {
   final String title;
-  final String rating;
-  final String cookTime;
+  final String rating = randomRating();
+  final String cookTime = randomCookTime();
   final String thumbnailUrl;
-  const OverflowCard({
+
+  OverflowCard({
     super.key,
     required this.title,
-    required this.cookTime,
-    required this.rating,
     required this.thumbnailUrl,
   });
 
@@ -176,18 +177,31 @@ class OverflowCard extends StatelessWidget {
       ),
     );
   }
+
+  static String randomRating() {
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _random = Random();
+    var num = _random.nextDouble() * 50;
+    var num2 = num.roundToDouble();
+    return (num2 / 10).toString();
+  }
+
+  static String randomCookTime() {
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _random = Random();
+    var num = _random.nextInt(90);
+    return num.toString() + ' min';
+  }
 }
 
 class OverflowCard2 extends StatelessWidget {
   final String title;
-  final String rating;
-  final String cookTime;
+  final String rating = OverflowCard.randomRating();
+  final String cooktime = OverflowCard.randomCookTime();
   final String thumbnailUrl;
-  const OverflowCard2({
+  OverflowCard2({
     super.key,
     required this.title,
-    required this.cookTime,
-    required this.rating,
     required this.thumbnailUrl,
   });
 
@@ -313,7 +327,7 @@ class OverflowCard2 extends StatelessWidget {
                                     size: 20, color: Colors.grey),
                                 const SizedBox(width: 5),
                                 MyText(
-                                  text: cookTime,
+                                  text: cooktime,
                                   color: Colors.black54,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
@@ -365,16 +379,14 @@ class OverflowCard2 extends StatelessWidget {
 
 class FoodCard extends StatelessWidget {
   final String title;
-  final String rating;
-  final String cookTime;
+  final String rating = OverflowCard.randomRating();
+  final String cooktime = OverflowCard.randomCookTime();
   final String thumbnailUrl;
   final bool isLoading; // Add a boolean flag to control the shimmer effect
 
-  const FoodCard({
+  FoodCard({
     Key? key,
     required this.title,
-    required this.cookTime,
-    required this.rating,
     required this.thumbnailUrl,
     required this.isLoading, // Pass the isLoading flag as a parameter
   }) : super(key: key);
@@ -494,7 +506,7 @@ class FoodCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 5),
                             MyText(
-                              text: cookTime,
+                              text: cooktime,
                               color: Colors.white,
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -542,15 +554,13 @@ class FoodCard extends StatelessWidget {
 
 class FoodCard2 extends StatelessWidget {
   final String title;
-  final String rating;
-  final String cookTime;
+  final String rating = OverflowCard.randomRating();
+  final String cooktime = OverflowCard.randomCookTime();
   final String thumbnailUrl;
 
-  const FoodCard2({
+  FoodCard2({
     Key? key,
     required this.title,
-    required this.cookTime,
-    required this.rating,
     required this.thumbnailUrl,
   }) : super(key: key);
 
@@ -625,7 +635,7 @@ class FoodCard2 extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -657,65 +667,6 @@ class FoodCard2 extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class IngredientCard extends StatelessWidget {
-  const IngredientCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      width: double.infinity,
-      height: 200,
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(217, 217, 217, 0.498),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 80,
-            width: 80,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              image: const DecorationImage(
-                image: NetworkImage(
-                    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhY2VzfGVufDB8fDB8fHww&auto=format&fit=cover&w=800&q=60'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyText(
-                text: 'Ingredient',
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-              SizedBox(height: 5),
-              MyText(
-                text: '1 cup of rice',
-                fontSize: 12,
-                color: Colors.black54,
-              ),
-            ],
-          ),
-          const Spacer(),
-          const MyText(
-            text: '300g',
-            fontSize: 18,
-            color: Colors.black54,
-          )
-        ],
       ),
     );
   }

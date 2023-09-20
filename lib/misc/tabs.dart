@@ -1,5 +1,5 @@
+import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/colors.dart';
-import 'package:cookin/widget/card.dart';
 import 'package:cookin/widget/notification_alert.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +58,7 @@ class _CustomTabsBarsState extends State<CustomTabsBars>
         SizedBox(
           width: double.infinity,
           child: TabBarView(controller: _tabController, children: const [
-            IngredientCard(),
+            IngredientCard2(mealId: 52874),
             NotificationCard(),
           ],),
         )

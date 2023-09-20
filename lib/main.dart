@@ -1,21 +1,18 @@
+import 'package:cookin/apis/recipe_reps.dart';
 import 'package:cookin/firebase_options.dart';
 import 'package:cookin/pages/pages.dart';
-import 'package:cookin/pages/search_page.dart';
 import 'package:cookin/utils/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-void main() {
-  runApp(const MyApp());
-  void main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
-}
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +32,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
                 .copyWith(background: AppColors.white),
           ),
-          home: const SearchPage(),
+          home: RecipePage(mealId: 52874, repository: RecipesRepository()),
         );
       },
     );

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:cookin/utils/recipe.dart';
 import 'package:http/http.dart' as http;
 
-import '../utils/recipe.dart';
 
 class RecipeApi {
   static Future<List<Recipe>> getRecipe() async {
@@ -22,7 +22,7 @@ class RecipeApi {
     for (var i in data['feed']) {
       _temp.add(i['content']['details']);
     }
-  var james = Recipe.
+
     return Recipe.recipesFromSnapshot(_temp);
   }
 }
