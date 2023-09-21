@@ -34,11 +34,17 @@ class _RecipePageState extends State<RecipePage>
     _tabController = TabController(length: 2, vsync: this);
   }
 
+  bool checkTabController() {
+    return _tabController.index == 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(SolarIconsOutline.arrowLeft),
+        leading: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: const Icon(SolarIconsOutline.arrowLeft)),
         surfaceTintColor: Colors.white,
         scrolledUnderElevation: 3,
         shadowColor: Colors.black26,
@@ -91,14 +97,33 @@ class _RecipePageState extends State<RecipePage>
                               color: AppColors.primaryColor,
                             ),
                           ),
-                          MyText(
-                            text: index[0].strCategory,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black54,
+                          Row(
+                            children: [
+                              MyText(
+                                text: index[0].strCategory,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black54,
+                              ),
+                              const Spacer(),
+                              const MyText(
+                                text: ' Area: ',
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primaryColor,
+                              ),
+                              const SizedBox(
+                                width: 2,
+                              ),
+                              MyText(
+                                text: index[0].strArea,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black54,
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 25),
-                          const SizedBox(height: 20),
                           Center(
                             child: Container(
                               width: 300,
@@ -139,67 +164,60 @@ class _RecipePageState extends State<RecipePage>
                   ),
                 ];
               },
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 2,
-                      child: TabBarView(
-                        controller: _tabController,
-                        children: <Widget>[
-                          IngredientCard2(
-                            mealId: widget.mealId,
+              body: TabBarView(
+                controller: _tabController,
+                children: <Widget>[
+                  SingleChildScrollView(
+                    child: IngredientCard2(
+                      mealId: widget.mealId,
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16.0),
+                          margin: const EdgeInsets.symmetric(vertical: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromRGBO(217, 217, 217, 0.379),
                           ),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Container(
-                                width: double.infinity,
-                                height: MediaQuery.of(context).size.height * 1,
-                                padding: const EdgeInsets.all(16.0),
-                                margin: const EdgeInsets.symmetric(vertical: 5),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: const Color.fromRGBO(
-                                      217, 217, 217, 0.379),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const MyText(
+                                  text: 'Follow the instructions below',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600),
+                              const SizedBox(height: 10),
+                              Text(
+                                index![0].strInstructions,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                  color: Colors.black54,
+                                  height: 1.95,
+                                  letterSpacing: 0.1,
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const MyText(
-                                        text: 'Follow the instructions below',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      index![0].strInstructions,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.black54,
-                                        height: 1.95,
-                                        letterSpacing: 0.1,
-                                      ),
-                                      textAlign: TextAlign.justify,
-                                      softWrap: true,
-                                    ),
-                                  ],
-                                ),
+                                textAlign: TextAlign.justify,
+                                softWrap: true,
                               ),
-                            ),
-                          )
-                        ],
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
             );
           } else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}"));
           }
+
           return const Center(child: CircularProgressIndicator());
         },
       ),

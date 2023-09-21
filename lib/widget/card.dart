@@ -1,5 +1,10 @@
 import 'dart:math';
 
+import 'package:cookin/apis/recipe_reps.dart';
+import 'package:cookin/models/categoryItem_model.dart';
+import 'package:cookin/models/category_model.dart';
+import 'package:cookin/models/item_model.dart';
+import 'package:cookin/pages/pages.dart';
 import 'package:cookin/utils/colors.dart';
 
 import 'package:cookin/widget/text.dart';
@@ -8,17 +13,21 @@ import 'package:shimmer/shimmer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:solar_icons/solar_icons.dart';
 
+import '../apis/mealdb_api.dart';
+
 class OverflowCard extends StatelessWidget {
+  OverflowCard({
+    required RecipesRepository repository,
+    super.key,
+    this.title = '',
+    this.thumbnailUrl = '',
+  }) : _repository = repository;
+
   final String title;
   final String rating = randomRating();
   final String cookTime = randomCookTime();
   final String thumbnailUrl;
-
-  OverflowCard({
-    super.key,
-    required this.title,
-    required this.thumbnailUrl,
-  });
+  final RecipesRepository _repository;
 
   @override
   Widget build(BuildContext context) {
@@ -26,354 +35,381 @@ class OverflowCard extends StatelessWidget {
     const double circleBorderWidth = 8.0;
     final size = MediaQuery.of(context).size;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: circleRadius / 2.0),
-            child: Container(
-              height: 200,
-              width: 180,
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                color: const Color.fromRGBO(217, 217, 217, 0.5),
-              ),
+    return FutureBuilder<ItemModel>(
+        future: _repository.randomMeals(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<Meals> index = snapshot.data!.meals;
+            return GestureDetector(
+              onTap: () {
+                int mealId = int.parse(index[0].idMeal);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RecipePage(
+                              mealId: mealId,
+                              repository: RecipesRepository(),
+                            )));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: circleRadius / 2.0),
+                      child: Container(
+                        height: 200,
+                        width: 180,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          color: const Color.fromRGBO(217, 217, 217, 0.5),
+                        ),
 
-              child: Column(
-                children: [
-                  const SizedBox(height: 70),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 70),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 38.5,
+                                    child: Text(
+                                      index[0].strMeal,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                        fontSize: 20.0,
+                                        height: 1.2,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 2.1.h),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const MyText(
+                                            text: 'Time',
+                                            color: Colors.black38,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          MyText(
+                                            text: cookTime,
+                                            color: Colors.black87,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      IconButton.filled(
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                            SolarIconsOutline.bookmark),
+                                        iconSize: 18,
+                                        color: AppColors.primaryColor,
+                                        style: IconButton.styleFrom(
+                                          backgroundColor: AppColors.white,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ), // Space for the image
+                      ),
+                    ),
+                    Stack(
+                      alignment: Alignment.topLeft,
                       children: [
-                        Text(
-                          title,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          style: const TextStyle(
-                            fontSize: 20.0,
-                            height: 1.2,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            overflow: TextOverflow.ellipsis,
+                        Container(
+                          width: circleRadius,
+                          height: circleRadius,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(32, 32, 32, 0.15),
+                                offset: Offset(0, 8),
+                                blurRadius: 26,
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(circleBorderWidth),
+                            child: DecoratedBox(
+                              decoration: ShapeDecoration(
+                                shape: const CircleBorder(
+                                  side: BorderSide(
+                                      color: Color.fromARGB(66, 164, 164, 164)),
+                                ),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(index[0].strMealThumb),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(height: 2.1.h),
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const MyText(
-                                  text: 'Time',
-                                  color: Colors.black38,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
+                        Positioned(
+                          right: 0,
+                          top: 55,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.amber[200],
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: size.height * 0.004,
+                                    horizontal: size.height * 0.008),
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.star_rounded,
+                                        color: Colors.amber,
+                                        size: 16,
+                                      ),
+                                      const SizedBox(width: 2),
+                                      Text(
+                                        rating, // Display the rating with one decimal place
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                MyText(
-                                  text: cookTime,
-                                  color: Colors.black87,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            IconButton.filled(
-                              onPressed: () {},
-                              icon: const Icon(SolarIconsOutline.bookmark),
-                              iconSize: 18,
-                              color: AppColors.primaryColor,
-                              style: IconButton.styleFrom(
-                                backgroundColor: AppColors.white,
                               ),
-                            )
-                          ],
+                            ),
+                          ), // Place your overlay widget here
                         ),
                       ],
-                    ),
-                  ),
-                ],
-              ), // Space for the image
-            ),
-          ),
-          Stack(
-            alignment: Alignment.topLeft,
-            children: [
-              Container(
-                width: circleRadius,
-                height: circleRadius,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(32, 32, 32, 0.15),
-                      offset: Offset(0, 8),
-                      blurRadius: 26,
-                    ),
+                    )
                   ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(circleBorderWidth),
-                  child: DecoratedBox(
-                    decoration: ShapeDecoration(
-                      shape: const CircleBorder(
-                        side: BorderSide(
-                            color: Color.fromARGB(66, 164, 164, 164)),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(thumbnailUrl),
-                      ),
-                    ),
-                  ),
-                ),
               ),
-              Positioned(
-                right: 0,
-                top: 55,
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.amber[200],
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: size.height * 0.004,
-                          horizontal: size.height * 0.008),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.star_rounded,
-                              color: Colors.amber,
-                              size: 16,
-                            ),
-                            const SizedBox(width: 2),
-                            Text(
-                              rating, // Display the rating with one decimal place
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ), // Place your overlay widget here
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+            );
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          return const Center(child: CircularProgressIndicator());
+        });
   }
 
   static String randomRating() {
     // ignore: no_leading_underscores_for_local_identifiers
     final _random = Random();
     var num = _random.nextDouble() * 50;
-    var num2 = num.roundToDouble();
+    var num2 = num.roundToDouble() + 1;
     return (num2 / 10).toString();
   }
 
   static String randomCookTime() {
     // ignore: no_leading_underscores_for_local_identifiers
     final _random = Random();
-    var num = _random.nextInt(90);
-    return num.toString() + ' min';
+    var num = _random.nextInt(10);
+    num = _random.nextInt(50) + 25;
+    return '$num min';
   }
 }
 
 class OverflowCard2 extends StatelessWidget {
+  OverflowCard2({
+    required RecipesRepository repository,
+    super.key,
+    this.title = '',
+    this.thumbnailUrl = '',
+  }) : _repository = repository;
+
   final String title;
   final String rating = OverflowCard.randomRating();
-  final String cooktime = OverflowCard.randomCookTime();
+  final String cookTime = OverflowCard.randomCookTime();
   final String thumbnailUrl;
-  OverflowCard2({
-    super.key,
-    required this.title,
-    required this.thumbnailUrl,
-  });
+  final RecipesRepository _repository;
 
   @override
   Widget build(BuildContext context) {
     const double circleRadius = 110.0;
     const double circleBorderWidth = 8.0;
 
-    return Container(
-      height: 220,
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      child: Stack(
-        alignment: Alignment.topRight,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: circleRadius / 2.0),
-            child: Container(
-              height: 115,
-              width: 330,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(253, 255, 255, 255),
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(32, 32, 32, 0.12),
-                    offset: Offset(0, 8),
-                    blurRadius: 26,
-                  ),
-                ],
-              ),
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 0),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          softWrap: true,
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(0.5),
-                              child: Icon(
-                                Icons.star_rounded,
-                                color: Colors.amber[600],
-                                size: 16,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(0.5),
-                              child: Icon(
-                                Icons.star_rounded,
-                                color: Colors.amber[600],
-                                size: 16,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(0.5),
-                              child: Icon(
-                                Icons.star_rounded,
-                                color: Colors.amber[600],
-                                size: 16,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(0.5),
-                              child: Icon(
-                                Icons.star_rounded,
-                                color: Colors.amber[600],
-                                size: 16,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(0.5),
-                              child: Icon(
-                                Icons.star_rounded,
-                                color: Colors.amber[600],
-                                size: 16,
-                              ),
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Row(
-                              children: [
-                                ClipOval(
-                                  child: Image.network(
-                                    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhY2VzfGVufDB8fDB8fHww&auto=format&fit=cover&w=800&q=60',
-                                    height: 37,
-                                    width: 37,
-                                  ),
-                                ),
-                                const SizedBox(width: 5),
-                                const MyText(
-                                  text: 'By James Milner',
-                                  color: Colors.black38,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            Row(
-                              children: [
-                                const Icon(SolarIconsOutline.alarm,
-                                    size: 20, color: Colors.grey),
-                                const SizedBox(width: 5),
-                                MyText(
-                                  text: cooktime,
-                                  color: Colors.black54,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
+    return FutureBuilder<List<MealsByCategorie>>(
+        future: MealsApi.GetMealByCategory('Beef'),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return GestureDetector(
+              onTap: () {
+                int mealId = int.parse(snapshot.data![0].idMeal.toString());
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RecipePage(
+                      mealId: mealId,
+                      repository: RecipesRepository(),
                     ),
                   ),
-                ],
-              ), // Space for the image
-            ),
-          ),
-          Container(
-            width: circleRadius,
-            height: circleRadius,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromRGBO(32, 32, 32, 0.064),
-                  offset: Offset(0, 8),
-                  blurRadius: 26,
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(circleBorderWidth),
-              child: DecoratedBox(
-                decoration: ShapeDecoration(
-                  shape: const CircleBorder(
-                    side: BorderSide(color: Colors.black26),
-                  ),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(thumbnailUrl),
-                  ),
+                );
+              },
+              child: Container(
+                height: 220,
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: circleRadius / 2.0),
+                      child: Container(
+                        height: 115,
+                        width: 330,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(253, 255, 255, 255),
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromRGBO(32, 32, 32, 0.12),
+                              offset: Offset(0, 8),
+                              blurRadius: 26,
+                            ),
+                          ],
+                        ),
+
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 0),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    snapshot.data![0].strMeal.toString(),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    softWrap: true,
+                                    style: const TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: 5,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(0.5),
+                                        child: Icon(
+                                          Icons.star_rounded,
+                                          color: Colors.amber[600],
+                                          size: 16,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          ClipOval(
+                                            child: Image.network(
+                                              'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhY2VzfGVufDB8fDB8fHww&auto=format&fit=cover&w=800&q=60',
+                                              height: 37,
+                                              width: 37,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 5),
+                                          const MyText(
+                                            text: 'By Gordon Ramsay',
+                                            color: Colors.black38,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Row(
+                                        children: [
+                                          const Icon(SolarIconsOutline.alarm,
+                                              size: 20, color: Colors.grey),
+                                          const SizedBox(width: 5),
+                                          MyText(
+                                            text: cookTime,
+                                            color: Colors.black54,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ), // Space for the image
+                      ),
+                    ),
+                    Container(
+                      width: circleRadius,
+                      height: circleRadius,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(32, 32, 32, 0.064),
+                            offset: Offset(0, 8),
+                            blurRadius: 26,
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(circleBorderWidth),
+                        child: DecoratedBox(
+                          decoration: ShapeDecoration(
+                            shape: const CircleBorder(
+                              side: BorderSide(color: Colors.black26),
+                            ),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  snapshot.data![0].strMealThumb.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-            ),
-          )
-        ],
-      ),
-    );
+            );
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          return const Center(child: CircularProgressIndicator());
+        });
   }
 }
 

@@ -1,6 +1,7 @@
 import 'dart:async';
 
-
+import 'package:cookin/models/categoryItem_model.dart';
+import 'package:cookin/models/category_model.dart';
 
 import '../models/item_model.dart';
 import 'mealdb_api.dart';
@@ -16,8 +17,9 @@ class RecipesRepository {
   Future<ItemModel> searchMeals(String name) => mealsApi.searchMeals(name);
 
   Future<ItemModel> randomMeals() => mealsApi.randomMeals();
-/*
-  
+
+  Future<List<MealsByCategorie>> GetMealByCategory( String CategoryName) => MealsApi.GetMealByCategory( CategoryName);
+
   Future<CategoryItemModel> fetchCategories(String category) =>
-      mealsApi.fetchCategories(category);*/
+      mealsApi.fetchCategories(category);
 }

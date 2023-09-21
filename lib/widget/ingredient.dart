@@ -1,7 +1,9 @@
 import 'package:cookin/apis/recipe_reps.dart';
 import 'package:cookin/models/item_model.dart';
+import 'package:cookin/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 class IngredientCard2 extends StatelessWidget {
   const IngredientCard2({Key? key, required this.mealId}) : super(key: key);
@@ -14,7 +16,22 @@ class IngredientCard2 extends StatelessWidget {
       future: RecipesRepository().fetchDetailMeals(mealId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+              child: Shimmer(
+            gradient: const LinearGradient(
+              colors: [
+                Colors.white,
+                Colors.grey,
+              ],
+            ),
+            child: Container(
+              height: 80,
+              width: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ));
         } else if (snapshot.hasError || !snapshot.hasData) {
           return const Center(child: Text("Error fetching data"));
         }
@@ -124,6 +141,7 @@ Widget buildIngredientList(List<String?> ingredients, List<String?> measures) {
                 height: 80,
                 width: 80,
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
                     image: imageProvider,
@@ -131,13 +149,27 @@ Widget buildIngredientList(List<String?> ingredients, List<String?> measures) {
                   ),
                 ),
               ),
-              placeholder: (context, url) => const CircularProgressIndicator(),
+              placeholder: (context, url) => Shimmer(
+                gradient: const LinearGradient(
+                  colors: [
+                    Colors.white,
+                    Colors.grey,
+                  ],
+                ),
+                child: Container(
+                  height: 80,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     ingredient,
@@ -147,15 +179,29 @@ Widget buildIngredientList(List<String?> ingredients, List<String?> measures) {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  if (measure != null && measure.isNotEmpty)
-                    Text(
-                      measure,
-                      style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                  const Spacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const Text(
+                        'Measure',
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
+                      if (measure != null && measure.isNotEmpty)
+                        Text(
+                          measure,
+                          style: const TextStyle(
+                            color: AppColors.secondaryColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                    ],
+                  ),
                 ],
               ),
             ),

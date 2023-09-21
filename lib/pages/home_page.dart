@@ -1,4 +1,5 @@
 import 'package:cookin/apis/recipe_apis.dart';
+import 'package:cookin/apis/recipe_reps.dart';
 import 'package:cookin/widget/modal.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 1.h,
                       ),
-                      const Categories2(),
+                   //   const Categories2(),
                       SizedBox(
                         height: 2.h,
                       ),
@@ -107,12 +108,8 @@ class _HomePageState extends State<HomePage> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: _recipes.map((recipe) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: OverflowCard(
-                                title: recipe.name,
-                                thumbnailUrl: recipe.images,
-                              ),
+                            return OverflowCard(
+                              repository: RecipesRepository(),
                             );
                           }).toList(),
                         ),
@@ -128,15 +125,9 @@ class _HomePageState extends State<HomePage> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          children: _recipes.map((recipe) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: OverflowCard2(
-                                title: recipe.name,
-                                thumbnailUrl: recipe.images,
-                              ),
-                            );
-                          }).toList(),
+                          children: [
+                            OverflowCard2(repository: RecipesRepository()),
+                          ],
                         ),
                       ),
                     ],

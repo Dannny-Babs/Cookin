@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:cookin/models/categoryItem_model.dart';
+import 'package:cookin/models/category_model.dart';
 import 'package:cookin/models/item_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart' show Client, Response;
 
 class Meal {
   String strCategory;
@@ -23,13 +25,14 @@ class Meal {
         "strCategory": strCategory,
       };
 }
+
 class MealsApi {
   Client client = Client();
 
-
   Future<ItemModel> fetchMeals(String type) async {
     // Fetch the list of meals from the Meals API.
-    final mealsUrl = Uri.parse('https://www.themealdb.com/api/json/v1/1/search.php?s=$type');
+    final mealsUrl =
+        Uri.parse('https://www.themealdb.com/api/json/v1/1/search.php?s=$type');
     final response = await client.get(mealsUrl);
 
     // If the response is successful, return the list of meals.
@@ -43,7 +46,8 @@ class MealsApi {
 
   Future<ItemModel> fetchDetail(String id) async {
     // Fetch the meal details from the Meals API.
-    final mealsUrl = Uri.parse('https://www.themealdb.com/api/json/v1/1/lookup.php?i=$id');
+    final mealsUrl =
+        Uri.parse('https://www.themealdb.com/api/json/v1/1/lookup.php?i=$id');
     final response = await client.get(mealsUrl);
 
     // If the response is successful, return the meal details.
@@ -57,7 +61,8 @@ class MealsApi {
 
   Future<ItemModel> searchMeals(String name) async {
     // Search for meals by name from the Meals API.
-    final mealsUrl = Uri.parse('https://www.themealdb.com/api/json/v1/1/search.php?s=$name');
+    final mealsUrl =
+        Uri.parse('https://www.themealdb.com/api/json/v1/1/search.php?s=$name');
     final response = await client.get(mealsUrl);
 
     // If the response is successful, return the list of meals.
@@ -71,7 +76,8 @@ class MealsApi {
 
   Future<ItemModel> randomMeals() async {
     // Fetch a random meal from the Meals API.
-    final mealsUrl = Uri.parse('https://www.themealdb.com/api/json/v1/1/random.php');
+    final mealsUrl =
+        Uri.parse('https://www.themealdb.com/api/json/v1/1/random.php');
     final response = await client.get(mealsUrl);
 
     // If the response is successful, return the meal details.
@@ -82,7 +88,36 @@ class MealsApi {
       throw Exception('Failed to load detail meals');
     }
   }
+
+  // ignore: non_constant_identifier_names
+ static Future<List<MealsByCategorie>> GetMealByCategory(String CategoryName) async {
+    final response = await http.get(
+      Uri.parse(
+          'https://www.themealdb.com/api/json/v1/1/filter.php?c=$CategoryName'),
+    );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body) as Map<String, dynamic>;
+      final meals = json['meals'] as List;
+      return meals.map((e) => MealsByCategorie.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to get meals by category');
+    }
+  }
+
+  Future<CategoryItemModel> fetchCategories(String category) async {
+    final mealsUrl = Uri.parse(
+        'https://www.themealdb.com/api/json/v1/1/filter.php?c=$category');
+    final response = await client.get(mealsUrl);
+
+    if (response.statusCode == 200) {
+      return CategoryItemModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load list of $category meals');
+    }
+  }
 }
+
 Future<List<Meal>> fetchMeals() async {
   final response = await http.get(
       Uri.parse('https://www.themealdb.com/api/json/v1/1/list.php?c=list'));
