@@ -1,3 +1,5 @@
+
+
 class MealsByCategorie {
   String? strMeal;
   String? strMealThumb;
@@ -9,8 +11,10 @@ class MealsByCategorie {
     strMeal = json['strMeal'];
     strMealThumb = json['strMealThumb'];
     idMeal = json['idMeal'];
+   
   }
-
+  
+   
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['strMeal'] = this.strMeal;

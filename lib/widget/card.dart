@@ -254,156 +254,166 @@ class OverflowCard2 extends StatelessWidget {
         future: MealsApi.GetMealByCategory('Beef'),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return GestureDetector(
-              onTap: () {
-                int mealId = int.parse(snapshot.data![0].idMeal.toString());
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RecipePage(
-                      mealId: mealId,
-                      repository: RecipesRepository(),
+            final meals = snapshot.data!;
+
+            return ListView.builder(
+              itemCount: 10, // Assuming snapshot.data is a list
+              itemBuilder: (context, index) {
+                final meal = meals[index];
+                return GestureDetector(
+                  onTap: () {
+                    int mealId = int.parse(meal.idMeal.toString());
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RecipePage(
+                          mealId: mealId,
+                          repository: RecipesRepository(),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 220,
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: <Widget>[
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: circleRadius / 2.0),
+                          child: Container(
+                            height: 115,
+                            width: 330,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(253, 255, 255, 255),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(32, 32, 32, 0.12),
+                                  offset: Offset(0, 8),
+                                  blurRadius: 26,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 0),
+                                Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        meal.strMeal.toString(),
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        softWrap: true,
+                                        style: const TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 5),
+                                      ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: 5,
+                                        scrollDirection: Axis.horizontal,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, starIndex) {
+                                          return Icon(
+                                            Icons.star_rounded,
+                                            color: Colors.amber[600],
+                                            size: 16,
+                                          );
+                                        },
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              ClipOval(
+                                                child: Image.network(
+                                                  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhY2VzfGVufDB8fDB8fHww&auto=format&fit=cover&w=800&q=60',
+                                                  height: 37,
+                                                  width: 37,
+                                                ),
+                                              ),
+                                              const SizedBox(width: 5),
+                                              const MyText(
+                                                text: 'By Gordon Ramsay',
+                                                color: Colors.black38,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ],
+                                          ),
+                                          const Spacer(),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                  SolarIconsOutline.alarm,
+                                                  size: 20,
+                                                  color: Colors.grey),
+                                              const SizedBox(width: 5),
+                                              MyText(
+                                                text: cookTime,
+                                                color: Colors.black54,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: circleRadius,
+                          height: circleRadius,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(32, 32, 32, 0.064),
+                                offset: Offset(0, 8),
+                                blurRadius: 26,
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(circleBorderWidth),
+                            child: DecoratedBox(
+                              decoration: ShapeDecoration(
+                                shape: const CircleBorder(
+                                  side: BorderSide(color: Colors.black26),
+                                ),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      meal.strMealThumb.toString()),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 );
               },
-              child: Container(
-                height: 220,
-                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: Stack(
-                  alignment: Alignment.topRight,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: circleRadius / 2.0),
-                      child: Container(
-                        height: 115,
-                        width: 330,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(253, 255, 255, 255),
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromRGBO(32, 32, 32, 0.12),
-                              offset: Offset(0, 8),
-                              blurRadius: 26,
-                            ),
-                          ],
-                        ),
-
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 0),
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    snapshot.data![0].strMeal.toString(),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 1,
-                                    softWrap: true,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: 5,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(0.5),
-                                        child: Icon(
-                                          Icons.star_rounded,
-                                          color: Colors.amber[600],
-                                          size: 16,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          ClipOval(
-                                            child: Image.network(
-                                              'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhY2VzfGVufDB8fDB8fHww&auto=format&fit=cover&w=800&q=60',
-                                              height: 37,
-                                              width: 37,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 5),
-                                          const MyText(
-                                            text: 'By Gordon Ramsay',
-                                            color: Colors.black38,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Row(
-                                        children: [
-                                          const Icon(SolarIconsOutline.alarm,
-                                              size: 20, color: Colors.grey),
-                                          const SizedBox(width: 5),
-                                          MyText(
-                                            text: cookTime,
-                                            color: Colors.black54,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ), // Space for the image
-                      ),
-                    ),
-                    Container(
-                      width: circleRadius,
-                      height: circleRadius,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(32, 32, 32, 0.064),
-                            offset: Offset(0, 8),
-                            blurRadius: 26,
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(circleBorderWidth),
-                        child: DecoratedBox(
-                          decoration: ShapeDecoration(
-                            shape: const CircleBorder(
-                              side: BorderSide(color: Colors.black26),
-                            ),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  snapshot.data![0].strMealThumb.toString()),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
             );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');

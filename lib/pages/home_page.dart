@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 1.h,
                       ),
-                   //   const Categories2(),
+                      const Categories2(),
                       SizedBox(
                         height: 2.h,
                       ),
@@ -122,12 +122,10 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            OverflowCard2(repository: RecipesRepository()),
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OverflowCard2(
+                          repository: RecipesRepository(),
                         ),
                       ),
                     ],
