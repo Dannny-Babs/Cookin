@@ -31,7 +31,7 @@ class _Categories2State extends State<Categories2> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: SizedBox(
         height: 5.h,
         child: ListView.builder(
@@ -44,32 +44,39 @@ class _Categories2State extends State<Categories2> {
   }
 
   Widget buildCategory(int index) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      child: Container(
-        margin: const EdgeInsets.only(right: 15),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          color: selectedIndex == index ? AppColors.primaryColor : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: Text(
-            categories[index],
-            style: TextStyle(
-              color: selectedIndex == index
-                  ? Colors.white
-                  : AppColors.primaryColor,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
+    if (index >= 0 && index < categories.length) {
+      return GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+        child: Container(
+          margin: const EdgeInsets.only(right: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+            color:
+                selectedIndex == index ? AppColors.primaryColor : Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+            child: Text(
+              categories[index],
+              style: TextStyle(
+                color: selectedIndex == index
+                    ? Colors.white
+                    : AppColors.primaryColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      // Handle the case where the index is out of bounds gracefully.
+      // You can return an empty container or a placeholder.
+      return Container();
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cookin/apis/recipe_apis.dart';
 import 'package:cookin/apis/recipe_reps.dart';
 import 'package:cookin/widget/modal.dart';
+import 'package:cookin/widget/searchbar.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 15,
+                        height: 2,
                       ),
                       Row(
                         children: [
@@ -73,20 +74,17 @@ class _HomePageState extends State<HomePage> {
                                 10), // Border radius of 10
                             child: Image.asset(
                               'images/profile.png',
-                              height: 60,
+                              height: 45,
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           const Flexible(
                             flex: 5,
-                            child: MyInput_Box(
-                              placeHolder: 'Search Recipes',
-                              marginVertical: 4,
-                            ),
+                            child: SearchBarFood(),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.02,
@@ -97,12 +95,12 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 1.h,
+                      const SizedBox(
+                        height: 10,
                       ),
                       const Categories2(),
-                      SizedBox(
-                        height: 2.h,
+                      const SizedBox(
+                        height: 7,
                       ),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -122,11 +120,12 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: OverflowCard2(
-                          repository: RecipesRepository(),
-                        ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      SizedBox(
+                        height: 220,
+                        child: OverflowCard2(),
                       ),
                     ],
                   ),

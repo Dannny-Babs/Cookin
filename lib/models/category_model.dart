@@ -16,10 +16,10 @@ class MealsByCategorie {
   
    
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['strMeal'] = this.strMeal;
-    data['strMealThumb'] = this.strMealThumb;
-    data['idMeal'] = this.idMeal;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['strMeal'] = strMeal;
+    data['strMealThumb'] = strMealThumb;
+    data['idMeal'] = idMeal;
     return data;
   }
 }

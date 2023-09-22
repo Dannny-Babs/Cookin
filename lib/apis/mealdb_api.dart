@@ -4,7 +4,7 @@ import 'package:cookin/models/category_model.dart';
 import 'package:cookin/models/item_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:http/http.dart' show Client, Response;
+import 'package:http/http.dart' show Client;
 
 class Meal {
   String strCategory;
