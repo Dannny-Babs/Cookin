@@ -1,4 +1,5 @@
-import 'package:cookin/utils/navigatio_bar.dart';
+import 'package:cookin/pages/start_screen.dart';
+
 import 'package:cookin/utils/utils.dart';
 
 import 'package:flutter/material.dart';
@@ -17,16 +18,17 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Cookin',
-            theme: ThemeData(
-              useMaterial3: true,
-              textTheme:
-                  GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-              colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
-                  .copyWith(background: AppColors.white),
-            ),
-            home: const BottonNavBar());
+          debugShowCheckedModeBanner: false,
+          title: 'Cookin',
+          theme: ThemeData(
+            useMaterial3: true,
+            textTheme:
+                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
+                .copyWith(background: AppColors.white),
+          ),
+          home: const startScreen(),
+        );
       },
     );
   }

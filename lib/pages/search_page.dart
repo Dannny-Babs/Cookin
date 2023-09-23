@@ -1,44 +1,35 @@
+import 'package:cookin/apis/mealdb_api.dart';
+import 'package:cookin/apis/recipe_reps.dart';
+import 'package:cookin/models/category_model.dart';
+import 'package:cookin/models/item_model.dart';
+import 'package:cookin/pages/pages.dart';
 import 'package:cookin/widget/card.dart';
+import 'package:cookin/widget/category.dart';
+import 'package:cookin/widget/searchbar.dart';
 import 'package:flutter/material.dart';
-
-import '../apis/recipe_apis.dart';
-import '../utils/recipe.dart';
-import '../widget/input_box.dart';
 import '../widget/modal.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  const SearchPage({
+    super.key,
+    required this.value,
+  });
+
+  final String value;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  late List<Recipe> _recipes = []; // Initialize as an empty list
-  bool _isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    getRecipes();
-  }
-
-  Future<void> getRecipes() async {
-    _recipes = await RecipeApi.getRecipe();
-    setState(() {
-      _isLoading = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Search Page',
+          'Search',
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 24,
+            fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -46,65 +37,221 @@ class _SearchPageState extends State<SearchPage> {
         scrolledUnderElevation: 3,
         shadowColor: Colors.black26,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 24,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
       ),
       body: NestedScrollView(
-          headerSliverBuilder: (context, value) {
-            return [
-              SliverToBoxAdapter(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
-                  ),
-                  child: Row(
-                    children: [
-                      const Flexible(
-                        flex: 5,
-                        child: MyInput_Box(
-                          placeHolder: 'Search Recipes',
-                          marginVertical: 4,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.02,
-                      ),
-                      const Flexible(
-                        flex: 1,
-                        child: FilterModal(),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ];
-          },
-          body: _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // Set the number of columns here
-                      childAspectRatio: 0.8,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
+        headerSliverBuilder: (context, value) {
+          return [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 16,
                     ),
-                    itemCount: _recipes.length,
-                    itemBuilder: (context, index) {
-                      final recipe = _recipes[index];
-                      return FoodCard2(
-                        title: recipe.name,
-                        thumbnailUrl: recipe.images,
-                      );
-                    },
+                    child: Row(
+                      children: [
+                        Flexible(
+                          flex: 5,
+                          child: SearchBarFood(
+                            hintText: widget.value,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        const Flexible(
+                          flex: 1,
+                          child: FilterModal(),
+                        ),
+                      ],
+                    ),
                   ),
-                )),
+                  const Categories2(),
+                ],
+              ),
+            ),
+          ];
+        },
+        body: FutureBuilder<ItemModel>(
+          future: RecipesRepository().searchMeals(widget.value),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Meals> index = snapshot.data!.meals;
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Set the number of columns here
+                    childAspectRatio: 0.8,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                  itemCount: index.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RecipePage(
+                                  mealId: int.parse(
+                                      snapshot.data!.meals[index].idMeal),
+                                  repository: RecipesRepository())),
+                        );
+                      },
+                      child: FoodCard2(
+                        title: snapshot.data!.meals[index].strMeal,
+                        thumbnailUrl: snapshot.data!.meals[index].strMealThumb,
+                      ),
+                    );
+                  },
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class CategoryPage extends StatefulWidget {
+  CategoryPage({
+    super.key,
+    required this.value,
+  });
+
+  late String value;
+
+  @override
+  State<CategoryPage> createState() => _CategoryPageState();
+}
+
+class _CategoryPageState extends State<CategoryPage> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.value == 'All') {
+      widget.value = 'Miscellaneous';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Search',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        surfaceTintColor: Colors.white,
+        scrolledUnderElevation: 3,
+        shadowColor: Colors.black26,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 24,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, value) {
+          return [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 16,
+                    ),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          flex: 5,
+                          child: SearchBarFood(
+                            hintText: widget.value,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        const Flexible(
+                          flex: 1,
+                          child: FilterModal(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Categories2(),
+                ],
+              ),
+            ),
+          ];
+        },
+        body: FutureBuilder<List<MealsByCategorie>>(
+          future: MealsApi.GetMealByCategory(widget.value),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Set the number of columns here
+                    childAspectRatio: 0.8,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipePage(
+                              mealId: int.parse(
+                                  snapshot.data![index].idMeal.toString()),
+                              repository: RecipesRepository(),
+                            ),
+                          ),
+                        );
+                      },
+                      child: FoodCard2(
+                        title: snapshot.data![index].strMeal.toString(),
+                        thumbnailUrl:
+                            snapshot.data![index].strMealThumb.toString(),
+                      ),
+                    );
+                  },
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
+        ),
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cookin/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -49,6 +50,12 @@ class _Categories2State extends State<Categories2> {
         onTap: () {
           setState(() {
             selectedIndex = index;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoryPage(value: categories[index]),
+              ),
+            );
           });
         },
         child: Container(

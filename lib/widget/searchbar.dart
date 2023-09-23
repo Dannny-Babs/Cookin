@@ -3,7 +3,9 @@ import 'package:cookin/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarFood extends StatefulWidget {
-  const SearchBarFood({super.key});
+  const SearchBarFood({super.key, required this.hintText, });
+
+  final String hintText;
 
   @override
   State<SearchBarFood> createState() => _SearchBarFoodState();
@@ -33,6 +35,7 @@ class _SearchBarFoodState extends State<SearchBarFood> {
     super.dispose();
   }
 
+  // ignore: non_constant_identifier_names
   void search(String Query) {
     final List<String> suggestionList = [];
     suggestionList.addAll(suggestions);
@@ -46,6 +49,10 @@ class _SearchBarFoodState extends State<SearchBarFood> {
     search(controller.text);
   }
 
+  void clearSearch() {
+    controller.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,7 +64,7 @@ class _SearchBarFoodState extends State<SearchBarFood> {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: AppColors.primaryColor, width: 1)),
           child: SearchBar(
-            hintText: 'Search for food...',
+            hintText: widget.hintText,
             hintStyle: MaterialStateProperty.all<TextStyle>(
               const TextStyle(
                 color: Colors.black45,
@@ -74,7 +81,7 @@ class _SearchBarFoodState extends State<SearchBarFood> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SearchPage(),
+                  builder: (context) => SearchPage(value: value),
                 ),
               );
             },
@@ -82,9 +89,11 @@ class _SearchBarFoodState extends State<SearchBarFood> {
               SolarIconsOutline.magnifier,
               color: AppColors.primaryColor,
             ),
+            
           ),
         ),
       ],
     );
   }
 }
+      

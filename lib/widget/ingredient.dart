@@ -194,7 +194,10 @@ Widget buildIngredientList(List<String?> ingredients, List<String?> measures) {
                       if (measure != null && measure.isNotEmpty)
                         Text(
                           measure,
+                          textWidthBasis: TextWidthBasis.longestLine,
+                          softWrap: true,
                           style: const TextStyle(
+                            overflow: TextOverflow.ellipsis,
                             color: AppColors.secondaryColor,
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

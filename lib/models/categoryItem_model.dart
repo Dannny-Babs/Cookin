@@ -1,3 +1,5 @@
+// ignore: file_names
+// ignore: file_names
 class CategoryItemModel {
   late List<CategoriesItem> _categoriesItem;
 

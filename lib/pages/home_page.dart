@@ -84,7 +84,9 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const Flexible(
                             flex: 5,
-                            child: SearchBarFood(),
+                            child: SearchBarFood(
+                              hintText: ' Search for food....',
+                            ),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.02,
