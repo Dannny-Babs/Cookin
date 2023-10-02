@@ -112,22 +112,18 @@ class _FilterModalState extends State<FilterModal> {
                                 'Local Dish',
                                 'Fruit',
                                 'Breakfast',
-                                'Spanish',
-                                'Lunch',
-                                'African',
+                               
                               ])
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 1.5.h,
-                        ),
+                       
                         FilledButton(
                           onPressed: () => Navigator.pop(context),
                           style: FilledButton.styleFrom(
                             backgroundColor: AppColors.primaryColor,
                             padding: EdgeInsets.symmetric(
-                                horizontal: Adaptive.w(25), vertical: 10),
+                                horizontal: Adaptive.w(25), vertical:10),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -293,7 +289,7 @@ class _ModalOptionsState extends State<ModalOptions> {
         vertical: 2,
       ),
       child: Wrap(
-        spacing: 10, // Adjust the spacing as needed
+        spacing: 2, // Adjust the spacing as needed
         children: List.generate(
           widget.options.length,
           (index) => buildButton(index),

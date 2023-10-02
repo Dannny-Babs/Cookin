@@ -280,7 +280,7 @@ class OverflowCard2 extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: circleRadius / 2.0),
                         child: Container(
-                          height: 120,
+                          height: 150,
                           width: 330,
                           decoration: BoxDecoration(
                             color: const Color.fromARGB(253, 255, 255, 255),
@@ -615,7 +615,7 @@ class FoodCard2 extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      width: MediaQuery.of(context).size.width * 1,
+      width: MediaQuery.of(context).size.width ,
       height: 200, // Set the height to 200
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),

@@ -50,7 +50,7 @@ class _Categories2State extends State<Categories2> {
         onTap: () {
           setState(() {
             selectedIndex = index;
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => CategoryPage(value: categories[index]),

@@ -49,36 +49,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 2,
                       ),
-                      Row(
-                        children: [
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              MyText(
-                                color: Colors.black,
-                                fontSize: 30,
-                                fontWeight: FontWeight.w900,
-                                text: 'Hello Jega👋',
-                              ),
-                              MyText(
-                                text: 'What are you cooking today?',
-                                color: Colors.black26,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                              ),
-                            ],
-                          ),
-                          const Spacer(), // Responsive space
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                                10), // Border radius of 10
-                            child: Image.asset(
-                              'images/profile.png',
-                              height: 45,
-                            ),
-                          ),
-                        ],
-                      ),
+                     const ProfileInfo(),
                       const SizedBox(height: 10),
                       Row(
                         children: [
@@ -134,6 +105,46 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+    );
+  }
+}
+
+class ProfileInfo extends StatelessWidget {
+  const ProfileInfo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MyText(
+              color: Colors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.w900,
+              text: 'Hello Jega👋',
+            ),
+            MyText(
+              text: 'What are you cooking today?',
+              color: Colors.black26,
+              fontWeight: FontWeight.w400,
+              fontSize: 15,
+            ),
+          ],
+        ),
+        const Spacer(), // Responsive space
+        ClipRRect(
+          borderRadius: BorderRadius.circular(
+              10), // Border radius of 10
+          child: Image.asset(
+            'images/profile.png',
+            height: 45,
+          ),
+        ),
+      ],
     );
   }
 }

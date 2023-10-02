@@ -169,7 +169,12 @@ class _CategoryPageState extends State<CategoryPage> {
             size: 24,
           ),
           onPressed: () {
-            Navigator.pop(context);
+           Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ),
+            );
           },
         ),
       ),
