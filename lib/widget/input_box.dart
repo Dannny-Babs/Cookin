@@ -11,9 +11,10 @@ class InputBox extends StatefulWidget {
     this.placeHolder = 'Email',
     this.borderRadius = 12,
     this.marginVertical = 6,
+    this.onChanged,
   });
   final double height;
-
+  final void Function(String)? onChanged;
   final String placeHolder;
   final double borderRadius;
   final double marginVertical;
@@ -32,6 +33,7 @@ class _InputBoxState extends State<InputBox> {
         width: MediaQuery.of(context).size.width,
         child: TextField(
           textAlignVertical: TextAlignVertical.center,
+          onChanged: widget.onChanged,
           decoration: InputDecoration(
             hintStyle: const TextStyle(
               fontSize: 15,
@@ -69,12 +71,15 @@ class InputBoxPassword extends StatefulWidget {
     this.borderRadius = 12,
     this.marginVertical = 6,
     this.isPassword = false,
+    this.onChanged,
   });
   final double height;
 
   final String placeHolder;
   final double borderRadius;
   final double marginVertical;
+  final void Function(String)? onChanged;
+
   final bool isPassword;
 
   @override
@@ -92,6 +97,7 @@ class _InputBoxPasswordState extends State<InputBoxPassword> {
         width: MediaQuery.of(context).size.width,
         child: TextField(
           textAlignVertical: TextAlignVertical.center,
+          onChanged: widget.onChanged,
           decoration: InputDecoration(
             hintStyle: const TextStyle(fontSize: 15),
             suffixIcon: widget.isPassword

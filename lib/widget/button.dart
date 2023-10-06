@@ -58,6 +58,7 @@ class MyFilledButton extends StatefulWidget {
     this.fontsize = 24,
     this.fontweight = FontWeight.w500,
     this.Borderradius = 12,
+    this.onPressed
   });
   final double sizebox;
   final page;
@@ -68,6 +69,7 @@ class MyFilledButton extends StatefulWidget {
   final double Borderradius;
   final fontweight;
   final double fontsize;
+  final void Function()? onPressed;
   final icon;
 
   @override
@@ -78,7 +80,7 @@ class _MyFilledButtonState extends State<MyFilledButton> {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {
+      onPressed: widget.onPressed ?? () {
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
             return widget.page;
@@ -297,10 +299,12 @@ class AnchorTextButton extends StatelessWidget {
     required this.text1,
     required this.text2,
     this.page = const CreateAccountPage(),
+    this.onPressed,
   });
   final double fontsize;
   final String text1;
   final String text2;
+  final void Function()? onPressed;
   final page;
   final Color color1;
   final Color color2;
@@ -308,13 +312,7 @@ class AnchorTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            return page;
-          },
-        ));
-      },
+      onPressed: onPressed,
       child: RichText(
         text: TextSpan(
           style:

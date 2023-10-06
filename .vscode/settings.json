@@ -34,5 +34,6 @@
         "verticalpadding",
         "vsync",
         "yummly"
-    ]
+    ],
+    "cmake.sourceDirectory": "C:/Users/raj/Desktop/projects/Cookin/windows/flutter"
 }

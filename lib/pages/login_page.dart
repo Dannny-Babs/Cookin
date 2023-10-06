@@ -13,6 +13,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final Map<String, dynamic> _formData = {
+    'email': '',
+    'password': '',
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,11 +54,11 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 90,
                   ),
-                  const Column(
+                  Column(
                     crossAxisAlignment:
                         CrossAxisAlignment.start, // Align contents to the left
                     children: [
-                      MyText(
+                      const MyText(
                         text: 'Email',
                         fontSize: 18,
                       ),
@@ -63,16 +67,17 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: 10,
                         placeHolder: '\t\tEnter Email',
                         marginVertical: 5,
+                        onChanged: (value) => _formData['email'] = value,
                       ),
                     ],
                   ),
                   const SizedBox(
                     height: 15,
                   ),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      MyText(
+                      const MyText(
                         text: 'Password',
                         fontSize: 18,
                       ),
@@ -82,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                         isPassword: true,
                         placeHolder: '\t\tEnter Password',
                         marginVertical: 5,
+                        onChanged: (value) => _formData['password'] = value,
                       ),
                     ],
                   ),
@@ -98,13 +104,21 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 35,
                   ),
-                  const MyFilledButton(
+                   MyFilledButton(
                     color: Colors.white,
                     bgcolor: AppColors.primaryColor,
                     text: 'Sign In',
                     fontsize: 20,
-                    page: BottonNavBar(),
+                    page: const BottonNavBar(),
                     icon: SolarIconsOutline.arrowRight,
+                    onPressed: () {
+        User.createUserAsync(_formData, 'signin');
+        // Navigator.push(context, MaterialPageRoute(
+        //   builder: (context) {
+        //     return const BottonNavBar();
+        //   },
+        // ));
+      },
                   ),
                   const SizedBox(
                     height: 30,
@@ -135,12 +149,19 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 60,
+                    height: 30,
                   ),
-                  const AnchorTextButton(
+                  AnchorTextButton(
                     text1: "Don't have an account?",
                     text2: 'Sign Up',
-                    page: CreateAccountPage(),
+                    onPressed: () {
+                      User.createUserAsync(_formData, 'login');
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const CreateAccountPage();
+                        },
+                      ));
+                    },
                   ),
                 ],
               ),

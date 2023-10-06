@@ -1,3 +1,4 @@
+import 'package:cookin/pages/login_page.dart';
 import 'package:cookin/pages/start_screen.dart';
 
 import 'package:cookin/utils/utils.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
                 .copyWith(background: AppColors.white),
           ),
-          home: const startScreen(),
+          home: const LoginPage(),
         );
       },
     );

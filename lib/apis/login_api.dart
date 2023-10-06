@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class User {
-  String name;
-  String password;
-  String email;
+  String? name;
+  String? password;
+  String? email;
 
   User({
-    required this.name,
-    required this.email,
-    required this.password,
+     this.name,
+     this.email,
+     this.password,
   });
 
   
@@ -25,7 +25,7 @@ class User {
 
       final body = jsonEncode(json);
 
-      final response = await http.post(
+      final response = await http.put(
         url,
         headers: headers,
         body: body,
