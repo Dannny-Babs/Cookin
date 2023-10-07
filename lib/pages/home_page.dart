@@ -5,6 +5,7 @@ import 'package:cookin/widget/searchbar.dart';
 import 'package:cookin/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../apis/login_api.dart';
 
 import '../utils/recipe.dart';
 import '../widget/category.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late List<Recipe> _recipes;
+  late User _user;
   bool _isLoading = true;
 
   @override
@@ -28,6 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> getRecipes() async {
     _recipes = await RecipeApi.getRecipe();
+    _user = await User.get();
     setState(() {
       _isLoading = false;
     });
@@ -49,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 2,
                       ),
-                     const ProfileInfo(),
+                      ProfileInfo(user: _user),
                       const SizedBox(height: 10),
                       Row(
                         children: [
@@ -110,24 +113,26 @@ class _HomePageState extends State<HomePage> {
 }
 
 class ProfileInfo extends StatelessWidget {
+  final User user;
   const ProfileInfo({
     super.key,
+    required this.user,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyText(
               color: Colors.black,
               fontSize: 30,
               fontWeight: FontWeight.w900,
-              text: 'Hello Jega👋',
+              text: 'Hello ${user.name}👋',
             ),
-            MyText(
+            const MyText(
               text: 'What are you cooking today?',
               color: Colors.black26,
               fontWeight: FontWeight.w400,
@@ -137,8 +142,7 @@ class ProfileInfo extends StatelessWidget {
         ),
         const Spacer(), // Responsive space
         ClipRRect(
-          borderRadius: BorderRadius.circular(
-              10), // Border radius of 10
+          borderRadius: BorderRadius.circular(10), // Border radius of 10
           child: Image.asset(
             'images/profile.png',
             height: 45,

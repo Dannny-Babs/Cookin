@@ -104,21 +104,30 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 35,
                   ),
-                   MyFilledButton(
+                  MyFilledButton(
                     color: Colors.white,
                     bgcolor: AppColors.primaryColor,
                     text: 'Sign In',
                     fontsize: 20,
                     page: const BottonNavBar(),
                     icon: SolarIconsOutline.arrowRight,
-                    onPressed: () {
-        User.createUserAsync(_formData, 'signin');
-        // Navigator.push(context, MaterialPageRoute(
-        //   builder: (context) {
-        //     return const BottonNavBar();
-        //   },
-        // ));
-      },
+                    onPressed: () async {
+                      final scaffoldContext = context; // Capture the context
+
+                      User.authenticateUserAsync(_formData, 'signin')
+                          .then((user) {
+                            debugPrint('User: $user');
+                        if (user == true) {
+                          Navigator.push(scaffoldContext, MaterialPageRoute(
+                            builder: (context) {
+                              return const BottonNavBar();
+                            },
+                          ));
+                        } else {
+                          User.showFlashError(scaffoldContext, "email or password is incorrect");
+                        }
+                      });
+                    },
                   ),
                   const SizedBox(
                     height: 30,
@@ -155,7 +164,6 @@ class _LoginPageState extends State<LoginPage> {
                     text1: "Don't have an account?",
                     text2: 'Sign Up',
                     onPressed: () {
-                      User.createUserAsync(_formData, 'login');
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
                           return const CreateAccountPage();

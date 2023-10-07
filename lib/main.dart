@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
                 .copyWith(background: AppColors.white),
           ),
-          home: const LoginPage(),
+          home: const ScaffoldMessenger(child:  startScreen()),
         );
       },
     );

@@ -147,9 +147,10 @@ class InputWithLabel extends StatelessWidget {
     this.marginVertical = 6,
     this.label = 'Email',
     this.isPassword = false,
+    this.onChanged,
   });
   final double height;
-
+  final void Function(String)? onChanged;
   final String placeHolder;
   final double borderRadius;
   final double marginVertical;
@@ -173,12 +174,14 @@ class InputWithLabel extends StatelessWidget {
                   placeHolder: placeHolder,
                   borderRadius: borderRadius,
                   marginVertical: marginVertical,
+                  onChanged: onChanged,
                 )
               : InputBox(
                   height: height,
                   placeHolder: placeHolder,
                   borderRadius: borderRadius,
                   marginVertical: marginVertical,
+                  onChanged: onChanged,
                 ),
         ],
       ),
