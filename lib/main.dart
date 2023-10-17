@@ -1,4 +1,4 @@
-import 'package:cookin/pages/login_page.dart';
+
 import 'package:cookin/pages/start_screen.dart';
 
 import 'package:cookin/utils/utils.dart';

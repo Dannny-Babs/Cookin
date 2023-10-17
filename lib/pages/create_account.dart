@@ -102,6 +102,11 @@ class CreateAccountPage extends StatelessWidget {
                               "passwords do not match");
                           return;
                         }
+                        if(_formData['name'] == '' || _formData['email'] == '' || _formData['password'] == '' || _formData['confirmPassword'] == '') {
+                          User.showFlashError(scaffoldContext,
+                              "please fill all field");
+                          return;
+                        }
                         User.createUserAsync(_formData)
                             .then((user) {
                           debugPrint('User: $user');

@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   AnchorTextButton(
                     text1: "Don't have an account?",

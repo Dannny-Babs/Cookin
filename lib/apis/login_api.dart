@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class User {
   String name;
@@ -17,13 +17,16 @@ class User {
   });
 
   static Future<User> get() async {
-    final  userjson = await SessionManager().get("User");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final Map<String, dynamic> userjson = {};
+    userjson["name"] = prefs.getString('name');
+    userjson["email"] = prefs.getString('email');
+    userjson["password"] = prefs.getString('password');
+    userjson["id"] = prefs.getString('id');
     User user = User.fromJson(userjson);
 
     return user;
   }
-
-  
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -35,6 +38,7 @@ class User {
   }
   static Future<bool> createUserAsync(Map<String, dynamic> json) async {
     Uri url = Uri.parse('https://cookinraj.vercel.app/signin');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     try {
       final headers = <String, String>{
@@ -42,7 +46,7 @@ class User {
       };
 
       final body = jsonEncode(json);
-    
+
       final response = await http.post(
         url,
         headers: headers,
@@ -50,8 +54,13 @@ class User {
       );
 
       if (response.statusCode == 200) {
+        debugPrint(json.toString());
         debugPrint(response.body);
-        await SessionManager().set("User", User.fromJson(jsonDecode(response.body)));
+        User user = User.fromJson(jsonDecode(response.body));
+        prefs.setString("id", user.id.toString());
+        prefs.setString("name", user.name.toString());
+        prefs.setString("email", user.email.toString());
+        prefs.setString("password", user.password.toString());
         return true;
       } else {
         // Handle the response based on the status code.
@@ -64,9 +73,11 @@ class User {
       return false;
     }
   }
+
   static Future<bool> authenticateUserAsync(
       Map<String, dynamic> json, String route) async {
     Uri url = Uri.parse('https://cookinraj.vercel.app/$route');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     try {
       final headers = <String, String>{
@@ -82,8 +93,15 @@ class User {
       );
 
       if (response.statusCode == 200) {
-        await SessionManager().set("User", User.fromJson(jsonDecode(response.body)));
+        debugPrint(json.toString());
+        debugPrint(response.body);
+        User user = User.fromJson(jsonDecode(response.body));
+        prefs.setString("id", user.id.toString());
+        prefs.setString("name", user.name.toString());
+        prefs.setString("email", user.email.toString());
+        prefs.setString("password", user.password.toString());
         return true;
+        
       } else {
         // Handle the response based on the status code.
         debugPrint('Failed with status code ${response.statusCode}');
